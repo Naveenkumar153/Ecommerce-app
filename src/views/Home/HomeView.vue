@@ -1,19 +1,26 @@
 
 <template>
+<!-- eslint-disable -->
   <ion-page>
+        <site-header></site-header>
     <ion-content>
-      <site-header></site-header>
+   
+        <mobile-slide class="ion-padding-top"></mobile-slide>
+      <!-- <section class="mobile">
+      </section> -->
     </ion-content>
   </ion-page>
 </template>
 
 <script>
 /* eslint-disable */
-import {IonPage,IonContent} from '@ionic/vue';
+import {IonPage,IonContent,} from '@ionic/vue';
+import MobileSlide from '../../components/cursorials/MobileSwiper.vue';
 export default {
   components:{
      IonPage,
      IonContent,
+     MobileSlide,
   },
   setup(){
 

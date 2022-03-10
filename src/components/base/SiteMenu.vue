@@ -1,44 +1,33 @@
 <template>
 <!-- eslint-disable  -->
-    <ion-menu side="start" menu-id="myMenu" content-id="main">
-        <ion-content>
-            <ion-icon :icon="addOutline" class="menu-close" @click="menuClose"></ion-icon>
-            <div class="menu-header-background"></div>
-            <div class="header-content">
-                <ion-thumbnail slot="start" class="header-content__img">
-                        <img src="https://media.istockphoto.com/photos/portrait-of-a-smiling-young-businessman-picture-id1297832726?b=1&k=20&m=1297832726&s=170667a&w=0&h=L4wrhC9DI1fCmtKs9z2O1tzuOpSuekY9os4zBBaQFJg=" alt="photo">
-                </ion-thumbnail>
-                <ion-label><h2 class="header-content__username">Naveen</h2></ion-label>
-            </div>
-            <!-- <ion-list lines="none" class="menu-items">
-                <ion-item class="menu-item">
-                   <ion-icon :icon="personOutline"/>Men</ion-item>
-                <ion-item class="menu-item">
-                   <ion-icon :icon="womanOutline"/>Woman</ion-item>
-                <ion-item class="menu-item">
-                   <ion-icon :icon="laptopOutline"/>Laptop</ion-item>
-                <ion-item class="menu-item">
-                   <ion-icon :icon="phonePortraitOutline"/>Mobile</ion-item>
-                <ion-item class="menu-item">
-                   <ion-icon :icon="bookOutline"/>Books</ion-item>
-            </ion-list> -->
-            <ion-menu-toggle>
-                <ion-list lines="none" class="menu-items">
-                    <ion-item class="menu-item">
-                         <ion-icon class="menu-icon"/>
-                    </ion-item>
-                </ion-list>
-            </ion-menu-toggle>
-        </ion-content>
-    </ion-menu>
-    <ion-router-outlet id="main"></ion-router-outlet>
+        <ion-menu side="start" menu-id="myMenu" content-id="main">
+            <ion-content>
+                <ion-icon :icon="addOutline" class="menu-close" @click="menuClose"></ion-icon>
+                <div class="menu-header-background"></div>
+                <div class="header-content">
+                    <ion-thumbnail slot="start" class="header-content__img">
+                            <img src="https://media.istockphoto.com/photos/portrait-of-a-smiling-young-businessman-picture-id1297832726?b=1&k=20&m=1297832726&s=170667a&w=0&h=L4wrhC9DI1fCmtKs9z2O1tzuOpSuekY9os4zBBaQFJg=" alt="photo">
+                    </ion-thumbnail>
+                    <ion-label><h2 class="header-content__username">Naveen</h2></ion-label>
+                </div>
+                <ion-menu-toggle v-for="menu of menuItems" :key="menu.id">
+                    <ion-list class="menu-items" lines="full">
+                        <ion-item class="menu-item">
+                            <ion-icon class="menu-icon" :icon="menu.icon"/>
+                            {{menu.title}}
+                        </ion-item>
+                    </ion-list>
+                </ion-menu-toggle>
+            </ion-content>
+        </ion-menu>
 </template>
 
 <script>
 /* eslint-disable */
+import { reactive } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
 import {
     IonMenu,
-    IonRouterOutlet,
     IonItem,
     IonMenuToggle,
     IonLabel,
@@ -47,18 +36,10 @@ import {
     IonIcon,
     menuController,
 } from '@ionic/vue';
-import { 
-    personOutline, 
-    addOutline, 
-    womanOutline,
-    laptopOutline,
-    phonePortraitOutline,
-    bookOutline
- } from 'ionicons/icons';
+import { personOutline,addOutline,womanOutline,laptopOutline,phonePortraitOutline,bookOutline } from 'ionicons/icons';
 export default {
     components:{
         IonMenu,
-        IonRouterOutlet,
         IonThumbnail,
         IonItem,
         IonMenuToggle,
@@ -69,24 +50,47 @@ export default {
         menuController,
     },
     setup(){
+    // data
+    const route  = useRoute();
+    const router = useRouter();
+    let menuItems = reactive([
+        { id:1, title: 'Men',    icon : personOutline,},
+        { id:2, title: 'Woman',  icon : womanOutline,},
+        { id:3, title: 'Laptop', icon : laptopOutline,},
+        { id:4, title: 'Mobile', icon : phonePortraitOutline,},
+        { id:5, title: 'Book',   icon : bookOutline,},
+    ]);
+    console.log(route);
+    console.log(router);
+    // computed
+    // methods
         let menuClose = () => {
             menuController.close('myMenu')
         }
-        return{
-            laptopOutline,
-            phonePortraitOutline,
-            bookOutline,
-            personOutline,
-            addOutline,
-            womanOutline,
-            menuClose,
-        }
+    // watch
+    return{
+        personOutline,
+        womanOutline,
+        laptopOutline,
+        phonePortraitOutline,
+        bookOutline,
+        addOutline,
+        menuClose,
+        router,
+        route,
+        menuItems,
+    }
     }
 }
 </script>
 
 <style scoped>
 /* eslint-disable */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+
+html{
+  font-family: 'Roboto', sans-serif;
+}
 .active-item {
     color: var(--ion-color-primary);
     font-weight: 500;
@@ -129,14 +133,20 @@ ion-icon{
     font-size: 1.5rem;
     margin: 0 0 0 20px;
 }
-.menu-items{
-    margin:0px;
-}
-.menu-item{
-    padding-left:15px;
-    margin-bottom:20px;
-}
 
+.menu-item{
+    margin: 0 15px;
+    cursor: pointer;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    color: #282c3f;
+}
+.menu-item:hover{
+    border-left: 4px solid #5e7ccc;
+}
+ion-item{ 
+    --border-color:#a5a5a5;
+}
 
 
 @media(min-width: 768px) {

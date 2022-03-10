@@ -1,13 +1,13 @@
 <template>
   <ion-app>
-    <Menu></Menu>
-    <ion-router-outlet></ion-router-outlet>
+      <ion-router-outlet id="main"></ion-router-outlet>
+      <Menu></Menu>
   </ion-app>
 </template>
 
 <script>
 /* eslint-disable */
-import { IonApp, IonRouterOutlet } from '@ionic/vue';
+import { IonApp, IonRouterOutlet, } from '@ionic/vue';
 import Menu from './components/Base/SiteMenu.vue';
 export default{
   name: 'App',

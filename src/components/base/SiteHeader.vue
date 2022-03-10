@@ -1,14 +1,13 @@
 <template>
 <!-- eslint-disable  -->
-    <ion-page>
-        <ion-header collapse="fade" :translucent="true" class="mobile-header">
+        <ion-header  :translucent="true" class="mobile-header">
           <ion-toolbar>
             <ion-buttons slot="start" class="menuBtn">
               <ion-menu-button menu="myMenu"></ion-menu-button>
             </ion-buttons>
             <ion-title slot="start">
                <div class="site-logo">
-                  <img src="../../assets/img/logo.png" alt="logo" class="logo">
+                  <img src="../../assets/logo/logo.png" alt="logo" class="logo">
                </div>
             </ion-title>
             <ion-list slot="start" class="list ion-text-center" lines="none" >
@@ -18,27 +17,18 @@
               <ion-item class="list-item">Mobile</ion-item>
               <ion-item class="list-item">Books</ion-item>
             </ion-list>
-            <ion-buttons slot="end">
-              <div class="header-icons">
-                <ion-button>
-                  <div>
+              <div class="header-icons" slot="end">
+                  <div class="header-icon">
                     <ion-icon :icon='personOutline' class="icon"/>
-                    <span class="icon-text">person</span>
+                    <span class="icon-text ion-text-lowercase">profile</span>
                   </div>
-                </ion-button>
-                <ion-button>
-                  <div>
+                  <div class="header-icon">
                     <ion-icon :icon="cartOutline" class="icon"/>
-                    <span class="icon-text">cart</span>
+                    <span class="icon-text ion-text-lowercase">cart</span>
                   </div>
-                </ion-button>
               </div>
-            </ion-buttons>
           </ion-toolbar>
         </ion-header>
-        <ion-content>
-        </ion-content>
-    </ion-page>
 </template>
 
 <script>
@@ -104,17 +94,32 @@ html{
    color:#282c3f;
    cursor:pointer;
  } 
+ .header-icons{
+    display: flex;
+    width: 110px;
+    height: 50px;
+    align-items: center;
+ }
+ .header-icons .header-icon{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+ }
  .header-icons .icon{
-    width: 30px;
-    height: 23px;
+    width: 24px;
+    height: 24px;
  }
  .header-icons .icon-text{
     display: block;
-    font-size: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.9px;
+    line-height: 16px;
  }
  .list-item:hover{
-   border-bottom:2px solid #ee5f73;
-   color:#ee5f73;
+    border-bottom: 3.5px solid #ee5f73;
+    color: #ee5f73;
+    margin-bottom: -8px;
  }
 @media(min-width:820px){
   .menuBtn{

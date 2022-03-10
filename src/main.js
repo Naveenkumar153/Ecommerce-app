@@ -23,6 +23,10 @@ import '@ionic/vue/css/text-transformation.css';
 import '@ionic/vue/css/flex-utils.css';
 import '@ionic/vue/css/display.css';
 
+// swiper styles
+import 'swiper/css';
+import 'swiper/css/bundle';
+
 // Global component
 import SiteHeader from '@/components/Base/SiteHeader.vue';
 import SiteFooter from '@/components/Base/SiteFooter.vue';
