@@ -8,8 +8,8 @@
 <script>
 /* eslint-disable */
 import { IonApp, IonRouterOutlet } from '@ionic/vue';
-import Menu from '@/components/base/SiteMenu.vue';
-export default {
+import Menu from './components/Base/SiteMenu.vue';
+export default{
   name: 'App',
   components: {
     IonApp,

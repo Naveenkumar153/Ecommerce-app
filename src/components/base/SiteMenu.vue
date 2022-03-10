@@ -10,20 +10,24 @@
                 </ion-thumbnail>
                 <ion-label><h2 class="header-content__username">Naveen</h2></ion-label>
             </div>
-            <ion-list lines="none" class="menu-items">
+            <!-- <ion-list lines="none" class="menu-items">
                 <ion-item class="menu-item">
                    <ion-icon :icon="personOutline"/>Men</ion-item>
                 <ion-item class="menu-item">
-                   <ion-icon :icon="personOutline"/>Women</ion-item>
+                   <ion-icon :icon="womanOutline"/>Woman</ion-item>
                 <ion-item class="menu-item">
-                   <ion-icon :icon="personOutline"/>Laptop</ion-item>
+                   <ion-icon :icon="laptopOutline"/>Laptop</ion-item>
                 <ion-item class="menu-item">
-                   <ion-icon :icon="personOutline"/>Mobile</ion-item>
+                   <ion-icon :icon="phonePortraitOutline"/>Mobile</ion-item>
                 <ion-item class="menu-item">
-                   <ion-icon :icon="personOutline"/>Books</ion-item>
-            </ion-list>
+                   <ion-icon :icon="bookOutline"/>Books</ion-item>
+            </ion-list> -->
             <ion-menu-toggle>
-                <ion-item></ion-item>
+                <ion-list lines="none" class="menu-items">
+                    <ion-item class="menu-item">
+                         <ion-icon class="menu-icon"/>
+                    </ion-item>
+                </ion-list>
             </ion-menu-toggle>
         </ion-content>
     </ion-menu>
@@ -43,7 +47,14 @@ import {
     IonIcon,
     menuController,
 } from '@ionic/vue';
-import { personOutline, addOutline } from 'ionicons/icons';
+import { 
+    personOutline, 
+    addOutline, 
+    womanOutline,
+    laptopOutline,
+    phonePortraitOutline,
+    bookOutline
+ } from 'ionicons/icons';
 export default {
     components:{
         IonMenu,
@@ -62,9 +73,13 @@ export default {
             menuController.close('myMenu')
         }
         return{
+            laptopOutline,
+            phonePortraitOutline,
+            bookOutline,
             personOutline,
             addOutline,
-            menuClose
+            womanOutline,
+            menuClose,
         }
     }
 }

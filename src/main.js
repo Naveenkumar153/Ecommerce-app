@@ -2,7 +2,7 @@
 import { createApp } from 'vue';
 import { IonicVue, IonPage,IonContent } from '@ionic/vue';
 import App from './App.vue';
-import router from './router/index';
+import router from './router';
 import store from './store/index';
 
 /* Core CSS required for Ionic components to work properly */
@@ -24,8 +24,8 @@ import '@ionic/vue/css/flex-utils.css';
 import '@ionic/vue/css/display.css';
 
 // Global component
-import SiteHeader from '@/components/base/SiteHeader.vue';
-import SiteFooter from '@/components/base/SiteFooter.vue';
+import SiteHeader from '@/components/Base/SiteHeader.vue';
+import SiteFooter from '@/components/Base/SiteFooter.vue';
 
 const app = createApp(App)
 app.use(IonicVue)

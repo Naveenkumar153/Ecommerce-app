@@ -13,7 +13,7 @@
             </ion-title>
             <ion-list slot="start" class="list ion-text-center" lines="none" >
               <ion-item class="list-item">Men</ion-item>
-              <ion-item class="list-item">Women</ion-item>
+              <ion-item class="list-item">Woman</ion-item>
               <ion-item class="list-item">Laptop</ion-item>
               <ion-item class="list-item">Mobile</ion-item>
               <ion-item class="list-item">Books</ion-item>
@@ -52,6 +52,7 @@ import {
   IonIcon,
   IonList,
   IonItem,
+  IonMenuButton,
   } from '@ionic/vue';
 import { cartOutline,personOutline } from 'ionicons/icons';
 export default {
@@ -64,6 +65,7 @@ export default {
     IonIcon,
     IonList,
     IonItem,
+    IonMenuButton,
   },
   setup(){
     return{
@@ -114,12 +116,12 @@ html{
    border-bottom:2px solid #ee5f73;
    color:#ee5f73;
  }
-@media(min-width:800px){
+@media(min-width:820px){
   .menuBtn{
     display: none;
   }
 }
-@media(max-width:800px){
+@media(max-width:820px){
   .list{
     display:none;
   }
