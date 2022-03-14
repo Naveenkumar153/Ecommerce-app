@@ -10,7 +10,7 @@ const Login          = defineAsyncComponent(() => import('@/views/Auth/LoginAuth
 const UserProfile    = defineAsyncComponent(() => import('@/views/User/ProfileView.vue'));
 // Product
 const ProductList    = defineAsyncComponent(() => import('@/views/Product/ProductList.vue'));
-const ProductDetails = defineAsyncComponent(() => import('@/views/Product/ProductDetails.vue'));
+// const ProductDetails = defineAsyncComponent(() => import('@/views/Product/ProductDetails.vue'));
 
 const Cart           = defineAsyncComponent(() => import('@/views/Cart/CartView.vue'));
 const Payment        = defineAsyncComponent(() => import('@/views/Payment/PaymentView.vue'));
@@ -22,8 +22,8 @@ const routes = [
   { path: '/signup', name: 'signup', component:SignUp },
   { path: '/profile', name: 'profile', component:UserProfile },
   { 
-    path     : '/Product',
-    name     : 'login',
+    path     : '/product',
+    name     : 'prodcut',
     component: ProductList
     // childeren routes need
    },

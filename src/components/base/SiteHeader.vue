@@ -1,34 +1,34 @@
 <template>
-<!-- eslint-disable  -->
-        <ion-header  :translucent="true" class="mobile-header">
-          <ion-toolbar>
-            <ion-buttons slot="start" class="menuBtn">
-              <ion-menu-button menu="myMenu"></ion-menu-button>
-            </ion-buttons>
-            <ion-title slot="start">
-               <div class="site-logo">
-                  <img src="../../assets/logo/logo.png" alt="logo" class="logo">
-               </div>
-            </ion-title>
-            <ion-list slot="start" class="list ion-text-center" lines="none" >
-              <ion-item class="list-item">Men</ion-item>
-              <ion-item class="list-item">Woman</ion-item>
-              <ion-item class="list-item">Laptop</ion-item>
-              <ion-item class="list-item">Mobile</ion-item>
-              <ion-item class="list-item">Books</ion-item>
-            </ion-list>
-              <div class="header-icons" slot="end">
-                  <div class="header-icon">
-                    <ion-icon :icon='personOutline' class="icon"/>
-                    <span class="icon-text ion-text-lowercase">profile</span>
-                  </div>
-                  <div class="header-icon">
-                    <ion-icon :icon="cartOutline" class="icon"/>
-                    <span class="icon-text ion-text-lowercase">cart</span>
-                  </div>
-              </div>
-          </ion-toolbar>
-        </ion-header>
+  <!-- eslint-disable  -->
+  <ion-header :translucent="true" class="mobile-header">
+    <ion-toolbar>
+      <ion-buttons slot="start" class="menuBtn">
+        <ion-menu-button menu="myMenu"></ion-menu-button>
+      </ion-buttons>
+      <ion-title slot="start">
+        <div class="site-logo">
+          <img src="../../assets/img/logo/logo.png" alt="logo" class="logo" />
+        </div>
+      </ion-title>
+      <ion-list slot="start" class="list ion-text-center" lines="none">
+        <ion-item class="list-item">Men</ion-item>
+        <ion-item class="list-item">Woman</ion-item>
+        <ion-item class="list-item">Laptop</ion-item>
+        <ion-item class="list-item">Mobile</ion-item>
+        <ion-item class="list-item">Books</ion-item>
+      </ion-list>
+      <div class="header-icons" slot="end">
+        <div class="header-icon">
+          <ion-icon :icon="personOutline" class="icon" />
+          <span class="icon-text ion-text-lowercase">profile</span>
+        </div>
+        <div class="header-icon">
+          <ion-icon :icon="cartOutline" class="icon" />
+          <span class="icon-text ion-text-lowercase">cart</span>
+        </div>
+      </div>
+    </ion-toolbar>
+  </ion-header>
 </template>
 
 <script>
@@ -43,10 +43,10 @@ import {
   IonList,
   IonItem,
   IonMenuButton,
-  } from '@ionic/vue';
-import { cartOutline,personOutline } from 'ionicons/icons';
+} from "@ionic/vue";
+import { cartOutline, personOutline } from "ionicons/icons";
 export default {
-  components:{
+  components: {
     IonHeader,
     IonToolbar,
     IonTitle,
@@ -57,78 +57,78 @@ export default {
     IonItem,
     IonMenuButton,
   },
-  setup(){
-    return{
+  setup() {
+    return {
       cartOutline,
-      personOutline
-    }
-  }
-}
+      personOutline,
+    };
+  },
+};
 </script>
 
 <style scoped>
 /* eslint-disable */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 
-html{
-  font-family: 'Roboto', sans-serif;
+html {
+  font-family: "Roboto", sans-serif;
 }
-.site-logo{
-  width: 60px;  
+.site-logo {
+  width: 60px;
   height: 75px;
   object-fit: cover;
 }
-.site-logo .logo{
+.site-logo .logo {
   object-fit: cover;
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
 }
-.list{
-    display: flex;
-    width: calc(60% - 10px);
+.list {
+  display: flex;
+  width: calc(60% - 10px);
 }
- .list-item{
-   padding: 0 6px;
-   font-weight:500;
-   letter-spacing: 0.7px;
-   color:#282c3f;
-   cursor:pointer;
- } 
- .header-icons{
-    display: flex;
-    width: 110px;
-    height: 50px;
-    align-items: center;
- }
- .header-icons .header-icon{
-    width: 100%;
-    height: 100%;
-    text-align: center;
- }
- .header-icons .icon{
-    width: 24px;
-    height: 24px;
- }
- .header-icons .icon-text{
-    display: block;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.9px;
-    line-height: 16px;
- }
- .list-item:hover{
-    border-bottom: 3.5px solid #ee5f73;
-    color: #ee5f73;
-    margin-bottom: -8px;
- }
-@media(min-width:820px){
-  .menuBtn{
+.list-item {
+  padding: 0 6px;
+  font-weight: 500;
+  letter-spacing: 0.7px;
+  color: #282c3f;
+  cursor: pointer;
+}
+.header-icons {
+  display: flex;
+  width: 110px;
+  height: 50px;
+  align-items: center;
+}
+.header-icons .header-icon {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.header-icons .icon {
+  width: 24px;
+  height: 24px;
+}
+.header-icons .icon-text {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.9px;
+  line-height: 16px;
+}
+.list-item:hover {
+  border-bottom: 3.5px solid #ee5f73;
+  color: #ee5f73;
+  margin-bottom: -8px;
+}
+@media (min-width: 820px) {
+  .menuBtn {
     display: none;
   }
 }
-@media(max-width:820px){
-  .list{
-    display:none;
+@media (max-width: 820px) {
+  .list {
+    display: none;
   }
 }
 </style>

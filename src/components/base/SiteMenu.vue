@@ -25,7 +25,7 @@
 <script>
 /* eslint-disable */
 import { reactive } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+// import { useRouter, useRoute } from 'vue-router';
 import {
     IonMenu,
     IonItem,
@@ -51,8 +51,8 @@ export default {
     },
     setup(){
     // data
-    const route  = useRoute();
-    const router = useRouter();
+    // const route  = useRoute();
+    // const router = useRouter();
     let menuItems = reactive([
         { id:1, title: 'Men',    icon : personOutline,},
         { id:2, title: 'Woman',  icon : womanOutline,},
@@ -60,8 +60,8 @@ export default {
         { id:4, title: 'Mobile', icon : phonePortraitOutline,},
         { id:5, title: 'Book',   icon : bookOutline,},
     ]);
-    console.log(route);
-    console.log(router);
+    // console.log(route);
+    // console.log(router);
     // computed
     // methods
         let menuClose = () => {
@@ -76,8 +76,8 @@ export default {
         bookOutline,
         addOutline,
         menuClose,
-        router,
-        route,
+        // router,
+        // route,
         menuItems,
     }
     }

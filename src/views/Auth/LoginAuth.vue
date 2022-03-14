@@ -1,17 +1,15 @@
 <template>
-     <!-- eslint-disable -->
-     <ion-page>
-         
-     </ion-page>
+  <!-- eslint-disable -->
+  <ion-page> </ion-page>
 </template>
+
 <script>
 /* eslint-disable */
 export default {
-    setup() {
-        
-    },
-}
+  setup() {},
+};
 </script>
+
 <style scoped>
- /* eslint-disable */
+/* eslint-disable */
 </style>
