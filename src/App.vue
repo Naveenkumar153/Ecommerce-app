@@ -8,8 +8,7 @@
 <script>
 /* eslint-disable */
 import { IonApp, IonRouterOutlet } from "@ionic/vue";
-import { onMounted } from "vue";
-import { useStore } from "vuex";
+
 import Menu from "./components/Base/SiteMenu.vue";
 export default {
   name: "App",
@@ -18,14 +17,7 @@ export default {
     IonRouterOutlet,
     Menu,
   },
-  setup() {
-    const store = useStore();
-    // lifeCycle hook
-    onMounted(() => {
-      const fetchProduct = store.dispatch("fetchProduct");
-      console.log(fetchProduct);
-    });
-  },
+  setup() {},
 };
 </script>
 

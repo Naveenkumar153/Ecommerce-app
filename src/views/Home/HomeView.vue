@@ -1,24 +1,33 @@
 <template>
-  <!-- eslint-disable -->
   <ion-page>
     <site-header></site-header>
     <ion-content>
-      <mobile-slide class="ion-padding-top"></mobile-slide>
+      <mobile-slide></mobile-slide>
     </ion-content>
   </ion-page>
 </template>
 
 <script>
 /* eslint-disable */
-import { IonPage, IonContent } from "@ionic/vue";
+import { onMounted } from "vue";
+import { useStore } from "vuex";
+import useProductApi from "../../hooks/productsApi";
 import MobileSlide from "../../components/cursorials/MobileSwiper.vue";
+// import MobileIconSlide from "../../components/cursorials/MobileIconSwiper.vue";
 export default {
   components: {
-    IonPage,
-    IonContent,
     MobileSlide,
+    // MobileIconSlide,
   },
-  setup() {},
+  setup() {
+    const store = useStore();
+    const { fetchProducts, productData } = useProductApi();
+    onMounted(() => {
+      fetchProducts();
+      console.log(productData.value);
+      store.getters.productData;
+    });
+  },
 };
 </script>
 

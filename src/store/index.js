@@ -1,36 +1,23 @@
 /* eslint-disable */
 import { createStore } from "vuex";
-import axios from "../Services/AxiosInterceptor";
+import cartModule from "./modules/Cart/index.js";
+import rootGetters from "./getters";
+import rootActions from "./action";
+import rootMutations from "./mutation";
 const store = createStore({
-  modules: {},
+  modules: {
+    cart: cartModule,
+  },
   state() {
     return {
-      product: [],
+      lastFetch:null,
+      products: [],
+      filterProduct:[]
     };
   },
-  getters: {
-    fetchProduct(state) {
-      return state.product;
-    },
-  },
-  mutations: {
-    fetchProduct(state, payload) {
-      state.product = payload;
-    },
-  },
-  actions: {
-    async fetchProduct(context) {
-      try {
-        const api = "products?limit=200";
-        const product = await axios.get(api);
-        const response = product.data.data;
-        context.commit("fetchProduct", response);
-        console.log(response);
-      } catch (error) {
-        console.log(error);
-      }
-    },
-  },
+  getters: rootGetters,
+  mutations: rootMutations,
+  actions: rootActions,
 });
 
 export default store;

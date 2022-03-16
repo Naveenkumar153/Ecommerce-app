@@ -1,8 +1,9 @@
 /* eslint-disable */
-const { defineConfig } = require('@vue/cli-service')
+const { defineConfig } = require("@vue/cli-service");
 module.exports = defineConfig({
   transpileDependencies: true,
   lintOnSave: false,
+  // useEslint: false,
   // chainWebpack: config => {
   //   config.module
   //   .rule('vue')
@@ -10,9 +11,9 @@ module.exports = defineConfig({
   //   .tap(options => {
   //     options.compilerOptions = {
   //       ...options.compilerOptions,
-  //       isCustomElement: tag => tag.startWith('ion-') 
+  //       isCustomElement: tag => tag.startWith('ion-')
   //     }
   //     return options
   //   })
   // }
-})
+});

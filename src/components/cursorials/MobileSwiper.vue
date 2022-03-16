@@ -1,49 +1,69 @@
 <template>
-<!-- eslint-disable  -->
-  <swiper
-    :spaceBetween="30"
-    :centeredSlides="true"
-    :autoplay="{
-      delay: 2500,
-      disableOnInteraction: false,
-    }"
-    :pagination="{
-      clickable: true,
-    }"
-    :navigation="true"
-    :modules="modules"
-    class="mySwiper"
-  >
-    <swiper-slide><img src="../../assets/img/home/1.jpg" alt=""></swiper-slide>
-    <swiper-slide><img src="../../assets/img/home/2.jpg" alt=""></swiper-slide>
-    <swiper-slide><img src="../../assets/img/home/3.jpg" alt=""></swiper-slide>
-    <swiper-slide><img src="../../assets/img/home/4.jpg" alt=""></swiper-slide>
-    <swiper-slide><img src="../../assets/img/home/5.jpg" alt=""></swiper-slide>
-    <swiper-slide><img src="../../assets/img/home/6.jpg" alt=""></swiper-slide>
-    <swiper-slide><img src="../../assets/img/home/7.jpg" alt=""></swiper-slide>
-  </swiper>
+  <!-- eslint-disable  -->
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <swiper
+          :spaceBetween="30"
+          :centeredSlides="true"
+          :autoplay="{
+            delay: 2500,
+            disableOnInteraction: false,
+          }"
+          :pagination="{
+            clickable: true,
+          }"
+          :navigation="true"
+          :modules="modules"
+          class="mySwiper"
+        >
+          <swiper-slide
+            ><img src="../../assets/img/home/1.jpg" alt=""
+          /></swiper-slide>
+          <swiper-slide
+            ><img src="../../assets/img/home/2.jpg" alt=""
+          /></swiper-slide>
+          <swiper-slide
+            ><img src="../../assets/img/home/3.jpg" alt=""
+          /></swiper-slide>
+          <swiper-slide
+            ><img src="../../assets/img/home/4.jpg" alt=""
+          /></swiper-slide>
+          <swiper-slide
+            ><img src="../../assets/img/home/5.jpg" alt=""
+          /></swiper-slide>
+        </swiper>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </template>
 <script>
 /* eslint-disable */
 // Import Swiper Vue.js components
-import { Swiper, SwiperSlide } from 'swiper/vue'
+import { IonGrid, IonRow, IonCol } from "@ionic/vue";
+import { Swiper, SwiperSlide } from "swiper/vue";
 // Import Swiper styles
-import 'swiper/css'
-import 'swiper/css/pagination'
-import 'swiper/css/navigation'
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 // import required modules
-import { Autoplay, Pagination, Navigation } from 'swiper'
+import { Autoplay, Pagination, Navigation } from "swiper";
 export default {
   components: {
     Swiper,
-    SwiperSlide
+    SwiperSlide,
+    IonGrid,
+    IonRow,
+    IonCol,
   },
-  setup () {
+  setup() {
     return {
-      modules: [Autoplay, Pagination, Navigation]
-    }
-  }
-}
+      modules: [Autoplay, Pagination, Navigation],
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -61,10 +81,16 @@ body {
   margin: 0;
   padding: 0;
 }
-
 .swiper {
   width: 100%;
   height: 100%;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  /* font-size: 2rem;
+  color: #ee5f73; */
+  display: none;
 }
 
 .swiper-slide {
@@ -94,4 +120,10 @@ body {
   object-fit: cover;
 }
 
+@media (min-width: 540px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+  }
+}
 </style>

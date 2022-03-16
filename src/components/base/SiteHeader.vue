@@ -11,11 +11,13 @@
         </div>
       </ion-title>
       <ion-list slot="start" class="list ion-text-center" lines="none">
-        <ion-item class="list-item">Men</ion-item>
-        <ion-item class="list-item">Woman</ion-item>
-        <ion-item class="list-item">Laptop</ion-item>
-        <ion-item class="list-item">Mobile</ion-item>
-        <ion-item class="list-item">Books</ion-item>
+        <ion-item
+          v-for="menu of menuItems"
+          :key="menu.id"
+          class="list-item"
+          @click="productRouting(menu.path, menu.name)"
+          >{{ menu.title }}</ion-item
+        >
       </ion-list>
       <div class="header-icons" slot="end">
         <div class="header-icon">
@@ -44,7 +46,12 @@ import {
   IonItem,
   IonMenuButton,
 } from "@ionic/vue";
+import { ref } from "vue";
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
 import { cartOutline, personOutline } from "ionicons/icons";
+import useNavigation from "../../hooks/navigation";
+// import useProductApi from "../../hooks/productsApi";
 export default {
   components: {
     IonHeader,
@@ -58,9 +65,65 @@ export default {
     IonMenuButton,
   },
   setup() {
+    // lifecycle
+    // const { fetchProducts, productData } = useProductApi();
+    // onMounted(() => {
+    //   fetchProducts();
+    // });
+    // hooks
+    const productData = ref([]);
+    const router = useRouter();
+    const store = useStore();
+    const { menuItems } = useNavigation();
+
+    const productRouting = (path, productName) => {
+      if (path === "/mens") {
+        productData.value = store.getters.fetchProducts;
+        console.log(productData.value);
+        console.log("mens route");
+      } else if (path === "/womans") {
+        productData.value = store.getters.fetchProducts;
+        console.log(productData.value);
+        console.log("womans route");
+      } else if (path === "/laptops") {
+        productData.value = store.getters.fetchProducts;
+        console.log(productData.value);
+        console.log("laptops route");
+        const laptops = productData.value.find(
+          (name) => name.slug === productName
+        );
+        console.log(laptops);
+        store.dispatch("getFilterProduct", laptops);
+        router.push({ name: "laptops" });
+      } else if (path === "/mobiles") {
+        productData.value = store.getters.fetchProducts;
+        console.log(productData.value);
+        console.log("mobiles route");
+        const mobiles = productData.value.find(
+          (name) => name.slug === productName
+        );
+        console.log(mobiles);
+        store.dispatch("getFilterProduct", mobiles);
+        router.push({ name: "mobiles" });
+      } else if (path === "/books") {
+        productData.value = store.getters.fetchProducts;
+        console.log(productData.value);
+        console.log("books route");
+        const books = productData.value.find(
+          (name) => name.slug === productName
+        );
+        console.log(books);
+        store.dispatch("getFilterProduct", books);
+        router.push({ name: "books" });
+      } else {
+        console.log("data not available");
+      }
+    };
     return {
       cartOutline,
       personOutline,
+      menuItems,
+      productRouting,
     };
   },
 };
