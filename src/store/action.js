@@ -28,13 +28,11 @@ export default {
         []
       );
       context.commit("fetchProduct", await productPerCategories);
-      console.log(productPerCategories);
     } catch (error) {
       console.log(error);
     }
   },
   getFilterProduct(context, product) {
     context.commit("filterProduct", product);
-    console.log(product);
   },
 };
