@@ -1,13 +1,18 @@
 <template>
   <!-- eslint-disable  -->
-  <ion-header :translucent="true" class="mobile-header">
+  <ion-header class="mobile-header">
     <ion-toolbar>
       <ion-buttons slot="start" class="menuBtn">
         <ion-menu-button menu="myMenu"></ion-menu-button>
       </ion-buttons>
       <ion-title slot="start">
         <div class="site-logo">
-          <img src="../../assets/img/logo/logo.png" alt="logo" class="logo" />
+          <img
+            src="../../assets/img/logo/logo.png"
+            alt="logo"
+            class="logo"
+            @click="homepage"
+          />
         </div>
       </ion-title>
       <ion-list slot="start" class="list ion-text-center" lines="none">
@@ -46,12 +51,9 @@ import {
   IonItem,
   IonMenuButton,
 } from "@ionic/vue";
-import { ref } from "vue";
-import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { cartOutline, personOutline } from "ionicons/icons";
-import useNavigation from "../../hooks/navigation";
-// import useProductApi from "../../hooks/productsApi";
+import filterDataNavigation from "../../hooks/filterDataEachNavigation";
 export default {
   components: {
     IonHeader,
@@ -65,65 +67,18 @@ export default {
     IonMenuButton,
   },
   setup() {
-    // lifecycle
-    // const { fetchProducts, productData } = useProductApi();
-    // onMounted(() => {
-    //   fetchProducts();
-    // });
     // hooks
-    const productData = ref([]);
     const router = useRouter();
-    const store = useStore();
-    const { menuItems } = useNavigation();
-
-    const productRouting = (path, productName) => {
-      if (path === "/mens") {
-        productData.value = store.getters.fetchProducts;
-        console.log(productData.value);
-        console.log("mens route");
-      } else if (path === "/womans") {
-        productData.value = store.getters.fetchProducts;
-        console.log(productData.value);
-        console.log("womans route");
-      } else if (path === "/laptops") {
-        productData.value = store.getters.fetchProducts;
-        console.log(productData.value);
-        console.log("laptops route");
-        const laptops = productData.value.find(
-          (name) => name.slug === productName
-        );
-        console.log(laptops);
-        store.dispatch("getFilterProduct", laptops);
-        router.push({ name: "laptops" });
-      } else if (path === "/mobiles") {
-        productData.value = store.getters.fetchProducts;
-        console.log(productData.value);
-        console.log("mobiles route");
-        const mobiles = productData.value.find(
-          (name) => name.slug === productName
-        );
-        console.log(mobiles);
-        store.dispatch("getFilterProduct", mobiles);
-        router.push({ name: "mobiles" });
-      } else if (path === "/books") {
-        productData.value = store.getters.fetchProducts;
-        console.log(productData.value);
-        console.log("books route");
-        const books = productData.value.find(
-          (name) => name.slug === productName
-        );
-        console.log(books);
-        store.dispatch("getFilterProduct", books);
-        router.push({ name: "books" });
-      } else {
-        console.log("data not available");
-      }
-    };
+    const { menuItems, productRouting } = filterDataNavigation();
+    function homepage() {
+      router.push("/");
+    }
     return {
       cartOutline,
       personOutline,
       menuItems,
       productRouting,
+      homepage,
     };
   },
 };
@@ -183,6 +138,9 @@ html {
   border-bottom: 3.5px solid #ee5f73;
   color: #ee5f73;
   margin-bottom: -8px;
+}
+.logo {
+  cursor: pointer;
 }
 @media (min-width: 820px) {
   .menuBtn {

@@ -33,8 +33,6 @@
             ><img src="../../assets/img/home/5.jpg" alt=""
           /></swiper-slide>
         </swiper>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
       </ion-col>
     </ion-row>
   </ion-grid>

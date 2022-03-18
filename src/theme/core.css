@@ -4,6 +4,7 @@ ion-toolbar {
 }
 ion-content {
   --background: var(--ion-background-color);
+  /* --offset-top: 0 !important; */
 }
 ion-header {
   padding: var(--ion-header-padding);

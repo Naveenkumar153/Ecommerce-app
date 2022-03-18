@@ -19,7 +19,10 @@
       </div>
       <ion-menu-toggle v-for="menu of menuItems" :key="menu.id">
         <ion-list class="menu-items" lines="full">
-          <ion-item class="menu-item" :router-link="menu.path">
+          <ion-item
+            class="menu-item"
+            @click="productRouting(menu.path, menu.name)"
+          >
             <ion-icon class="menu-icon" :icon="menu.icon" />
             {{ menu.title }}
           </ion-item>
@@ -31,7 +34,6 @@
 
 <script>
 /* eslint-disable */
-// import { useRouter, useRoute } from 'vue-router';
 import {
   IonMenu,
   IonItem,
@@ -44,6 +46,7 @@ import {
 } from "@ionic/vue";
 import { addOutline } from "ionicons/icons";
 import useNavigation from "../../hooks/navigation";
+import filterDataNavigation from "../../hooks/filterDataEachNavigation";
 export default {
   components: {
     IonMenu,
@@ -69,7 +72,8 @@ export default {
       laptopOutline,
       phonePortraitOutline,
       bookOutline,
-    } = useNavigation();
+      productRouting,
+    } = filterDataNavigation();
 
     return {
       personOutline,
@@ -80,6 +84,7 @@ export default {
       addOutline,
       menuClose,
       menuItems,
+      productRouting,
     };
   },
 };
