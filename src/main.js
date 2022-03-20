@@ -32,8 +32,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 // Global component
-import SiteHeader from "@/components/Base/SiteHeader.vue";
-import SiteFooter from "@/components/Base/SiteFooter.vue";
+import BaseLayout from "@/components/Base/BaseLayout.vue";
 
 const app = createApp(App);
 app.use(IonicVue);
@@ -41,8 +40,7 @@ app.use(router);
 app.use(store);
 app.component("ion-page", IonPage);
 app.component("ion-content", IonContent);
-app.component("site-header", SiteHeader);
-app.component("site-footer", SiteFooter);
+app.component("base-layout", BaseLayout);
 router.isReady().then(() => {
   app.mount("#app");
 });

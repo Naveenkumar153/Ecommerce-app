@@ -1,47 +1,61 @@
 <template>
   <!-- eslint-disable  -->
-  <ion-header class="mobile-header">
-    <ion-toolbar>
-      <ion-buttons slot="start" class="menuBtn">
-        <ion-menu-button menu="myMenu"></ion-menu-button>
-      </ion-buttons>
-      <ion-title slot="start">
-        <div class="site-logo">
+  <ion-page>
+    <ion-header class="mobile-header">
+      <ion-toolbar>
+        <ion-buttons slot="start" class="menuBtn" v-if="currentRouteName">
+          <ion-menu-button menu="myMenu"></ion-menu-button>
+        </ion-buttons>
+        <ion-buttons slot="start" v-else>
+          <ion-back-button
+            :default-href="pageDefaultBackLink"
+          ></ion-back-button>
+        </ion-buttons>
+        <ion-title slot="start" class="header-title">
           <img
             src="../../assets/img/logo/logo.png"
             alt="logo"
             class="logo"
             @click="homepage"
           />
+        </ion-title>
+        <ion-list slot="start" class="list ion-text-center" lines="none">
+          <ion-item
+            v-for="menu of menuItems"
+            :key="menu.id"
+            class="list-item"
+            @click="productRouting(menu.path, menu.name)"
+            >{{ menu.title }}</ion-item
+          >
+        </ion-list>
+        <div class="header-icons" slot="end">
+          <div class="header-icon">
+            <ion-icon :icon="personOutline" class="icon" />
+            <span class="icon-text ion-text-lowercase">profile</span>
+          </div>
+          <div class="header-icon">
+            <ion-icon :icon="cartOutline" class="icon" />
+            <span class="icon-text ion-text-lowercase">cart</span>
+          </div>
         </div>
-      </ion-title>
-      <ion-list slot="start" class="list ion-text-center" lines="none">
-        <ion-item
-          v-for="menu of menuItems"
-          :key="menu.id"
-          class="list-item"
-          @click="productRouting(menu.path, menu.name)"
-          >{{ menu.title }}</ion-item
-        >
-      </ion-list>
-      <div class="header-icons" slot="end">
-        <div class="header-icon">
-          <ion-icon :icon="personOutline" class="icon" />
-          <span class="icon-text ion-text-lowercase">profile</span>
-        </div>
-        <div class="header-icon">
-          <ion-icon :icon="cartOutline" class="icon" />
-          <span class="icon-text ion-text-lowercase">cart</span>
-        </div>
-      </div>
-    </ion-toolbar>
-  </ion-header>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <slot></slot>
+    </ion-content>
+    <ion-footer collapse="fade">
+      <ion-toolbar>
+        <ion-title>Footer</ion-title>
+      </ion-toolbar>
+    </ion-footer>
+  </ion-page>
 </template>
 
 <script>
 /* eslint-disable */
 import {
   IonHeader,
+  IonFooter,
   IonToolbar,
   IonTitle,
   IonButtons,
@@ -50,13 +64,16 @@ import {
   IonList,
   IonItem,
   IonMenuButton,
+  IonBackButton,
 } from "@ionic/vue";
-import { useRouter } from "vue-router";
+import { computed } from "vue";
+import { useRouter, useRoute } from "vue-router";
 import { cartOutline, personOutline } from "ionicons/icons";
 import filterDataNavigation from "../../hooks/filterDataEachNavigation";
 export default {
   components: {
     IonHeader,
+    IonFooter,
     IonToolbar,
     IonTitle,
     IonButtons,
@@ -65,10 +82,14 @@ export default {
     IonList,
     IonItem,
     IonMenuButton,
+    IonBackButton,
   },
+  props: ["pageDefaultBackLink"],
   setup() {
     // hooks
     const router = useRouter();
+    const route = useRoute();
+    const currentRouteName = computed(() => route.name === "home");
     const { menuItems, productRouting } = filterDataNavigation();
     function homepage() {
       router.push("/");
@@ -79,6 +100,7 @@ export default {
       menuItems,
       productRouting,
       homepage,
+      currentRouteName,
     };
   },
 };
@@ -91,19 +113,20 @@ export default {
 html {
   font-family: "Roboto", sans-serif;
 }
-.site-logo {
-  width: 60px;
-  height: 75px;
-  object-fit: cover;
+.header-title {
+  text-align: center;
 }
-.site-logo .logo {
+.header-title img {
+  width: 47px;
+}
+/* .site-logo .logo {
   object-fit: cover;
   width: 100%;
   height: 100%;
-}
+} */
 .list {
   display: flex;
-  width: calc(60% - 10px);
+  width: 460px;
 }
 .list-item {
   padding: 0 6px;

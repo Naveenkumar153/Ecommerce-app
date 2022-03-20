@@ -7,8 +7,12 @@
       <ion-list>
         <ion-item>
           <ion-select placeholder="sort by" interface="popover">
-            <ion-select-option>Price: High to Low</ion-select-option>
-            <ion-select-option>Price: Low to High</ion-select-option>
+            <ion-select-option @click="sort('asc')"
+              >Price: High to Low</ion-select-option
+            >
+            <ion-select-option @click="sort('desc')"
+              >Price: Low to High</ion-select-option
+            >
           </ion-select>
         </ion-item>
       </ion-list>
@@ -19,6 +23,8 @@
 <script>
 /* eslint-disable */
 import { IonList, IonItem, IonSelect, IonSelectOption } from "@ionic/vue";
+import { useStore } from "vuex";
+import useSort from "../../hooks/sort";
 export default {
   props: ["title"],
   components: {
@@ -27,7 +33,14 @@ export default {
     IonSelect,
     IonSelectOption,
   },
-  setup() {},
+  setup() {
+    const store = useStore();
+    const availableData = store.getters.filterProduct;
+    const { sort } = useSort(availableData);
+    return {
+      sort,
+    };
+  },
 };
 </script>
 

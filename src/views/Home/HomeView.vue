@@ -1,10 +1,7 @@
 <template>
-  <ion-page>
-    <ion-content>
-      <site-header></site-header>
-      <mobile-slide></mobile-slide>
-    </ion-content>
-  </ion-page>
+  <base-layout>
+    <mobile-slide></mobile-slide>
+  </base-layout>
 </template>
 
 <script>
