@@ -35,4 +35,7 @@ export default {
   getFilterProduct(context, product) {
     context.commit("filterProduct", product);
   },
+  productDetails(context, productDetails) {
+    context.commit("productDetails", productDetails);
+  },
 };

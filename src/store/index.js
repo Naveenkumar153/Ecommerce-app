@@ -10,9 +10,10 @@ const store = createStore({
   },
   state() {
     return {
-      lastFetch:null,
+      lastFetch: null,
       products: [],
-      filterProduct:[]
+      filterProduct: [],
+      productDetails: [],
     };
   },
   getters: rootGetters,

@@ -6,6 +6,9 @@ export default {
   filterProduct(state) {
     return state.filterProduct;
   },
+  productDetails(state) {
+    return state.productDetails;
+  },
   shoudUpdate(state) {
     const lastFetch = state.lastFetch;
     if (!lastFetch) {

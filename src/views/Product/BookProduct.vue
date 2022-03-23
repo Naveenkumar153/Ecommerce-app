@@ -12,15 +12,15 @@
           <div class="product-filter">
             <ion-list>
               <ion-item>
-                <ion-select placeholder="sort by" interface="popover">
-                  <ion-select-option @click="sort"
-                    >Clear Filter</ion-select-option
-                  >
-                  <ion-select-option @click="sort('asc')"
-                    >Price: High to Low</ion-select-option
-                  >
-                  <ion-select-option @click="sort('desc')"
+                <ion-select
+                  placeholder="sort by"
+                  interface="popover"
+                  @ionChange="sort($event)"
+                >
+                  <ion-select-option value="asc"
                     >Price: Low to High</ion-select-option
+                  ><ion-select-option value="desc"
+                    >Price: High to Low</ion-select-option
                   >
                 </ion-select>
               </ion-item>
@@ -30,7 +30,7 @@
       </ion-row>
       <ion-row class="ion-justify-content-center">
         <ion-col
-          v-for="product of booksData.productsData"
+          v-for="product of displayUser"
           :key="product.id"
           size="10"
           size-sm="4"
@@ -39,7 +39,7 @@
           size-xl="3"
           class="productCol"
         >
-          <ion-card class="product-card">
+          <ion-card class="product-card" @click="productDetails(product.id)">
             <img :src="product.image.url" alt="image" />
             <ion-card-header class="product-card-header">
               <ion-card-subtitle class="product-card-subtitle">
@@ -65,6 +65,7 @@
     </ion-grid>
   </base-layout>
 </template>
+
 <script>
 /* eslint-disable */
 import {
@@ -83,18 +84,18 @@ import {
   IonItem,
   IonSelect,
   IonSelectOption,
+  IonButton,
 } from "@ionic/vue";
 import { star } from "ionicons/icons";
-import { ref, onMounted } from "vue";
+import { reactive } from "vue";
 import { useStore } from "vuex";
-import contentHeader from "../../components/Base/BaseContainer.vue";
-import useSort from "../../hooks/sort";
+import { useRouter } from "vue-router";
+import useSortProduct from "../../hooks/sort";
 export default {
   components: {
     IonGrid,
     IonRow,
     IonCol,
-    contentHeader,
     IonCard,
     IonHeader,
     IonContent,
@@ -107,26 +108,40 @@ export default {
     IonItem,
     IonSelect,
     IonSelectOption,
+    IonButton,
   },
-  props: ["booksData"],
   setup() {
     const store = useStore();
-    const booksData = ref([]);
-    onMounted(() => {
-      booksData.value = store.getters.filterProduct;
-      console.log(booksData.value);
-    });
-    const { sort } = useSort(booksData);
+    const router = useRouter();
+    // getting the data useing getters
+    let booksData = reactive({});
+    booksData = store.getters.filterProduct;
+
+    // share the each productDetails datas
+    function productDetails(productId) {
+      const productDetail = displayUser.value.find(
+        (proId) => proId.id === productId
+      );
+      store.dispatch("productDetails", productDetail);
+      console.log(productDetail);
+      router.push({ path: "/books/" + productId });
+    }
+
+    // sort product
+    const { sort, displayUser } = useSortProduct(booksData);
     return {
       booksData,
       star,
       sort,
+      displayUser,
+      productDetails,
     };
   },
 };
 </script>
 <style scoped>
 /* eslint-disable */
+
 .product-filter {
   display: flex;
   align-items: center;
