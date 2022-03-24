@@ -162,7 +162,7 @@ ion-list {
 img {
   height: 200px;
   width: 100%;
-  -o-object-fit: cover;
+  -o-object-fit: contain;
   object-fit: contain;
 }
 .productCol {
@@ -195,5 +195,14 @@ img {
 .product-rating .rate {
   font-size: 0.9rem;
   padding: 4px;
+}
+
+@media (max-width: 576px) {
+  ion-col .product-name {
+    padding: 0 0 0 20px;
+  }
+  ion-col .product-filter {
+    padding: 0 20px 0 0;
+  }
 }
 </style>

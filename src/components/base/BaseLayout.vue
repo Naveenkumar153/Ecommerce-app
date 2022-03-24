@@ -1,7 +1,7 @@
 <template>
   <!-- eslint-disable  -->
   <ion-page>
-    <ion-header class="mobile-header">
+    <ion-header class="mobile-header site-header">
       <ion-toolbar>
         <ion-buttons slot="start" class="menuBtn" v-if="currentRouteName">
           <ion-menu-button menu="myMenu"></ion-menu-button>
@@ -113,6 +113,9 @@ export default {
 html {
   font-family: "Roboto", sans-serif;
 }
+/* .site-header {
+  max-width: 1328px;
+} */
 .header-title {
   text-align: center;
 }
