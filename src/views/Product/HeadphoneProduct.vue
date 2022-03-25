@@ -115,7 +115,7 @@ export default {
     const router = useRouter();
     // getting the data useing getters
     let booksData = reactive({});
-    booksData = store.getters.filterProduct;
+      booksData = store.getters.filterProduct;
 
     // share the each productDetails datas
     function productDetails(productId) {
@@ -124,7 +124,7 @@ export default {
       );
       store.dispatch("productDetails", productDetail);
       console.log(productDetail);
-      router.push({ path: "/mobiles/" + productId });
+      router.push({ path: "/headphones/" + productId });
     }
 
     // sort product
@@ -219,3 +219,4 @@ img {
   }
 }
 </style>
+ 

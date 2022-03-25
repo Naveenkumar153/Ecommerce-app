@@ -2,7 +2,7 @@
   <!-- eslint-disable -->
   <base-layout pageDefaultBackLink="/">
     <ion-grid>
-      <ion-row class="ion-justify-content-around">
+      <ion-row class="ion-justify-content-around filter">
         <ion-col size-sm="4" size-md="3" size-lg="3" size-xl="3">
           <div class="product-name">
             <h2>{{ booksData.name }}</h2>
@@ -28,7 +28,7 @@
           </div>
         </ion-col>
       </ion-row>
-      <ion-row class="ion-justify-content-center">
+      <ion-row class="ion-justify-content-center all-product">
         <ion-col
           v-for="product of displayUser"
           :key="product.id"
@@ -87,7 +87,7 @@ import {
   IonButton,
 } from "@ionic/vue";
 import { star } from "ionicons/icons";
-import { reactive } from "vue";
+import { reactive, } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import useSortProduct from "../../hooks/sort";
@@ -115,7 +115,7 @@ export default {
     const router = useRouter();
     // getting the data useing getters
     let booksData = reactive({});
-    booksData = store.getters.filterProduct;
+      booksData = store.getters.filterProduct;
 
     // share the each productDetails datas
     function productDetails(productId) {
@@ -155,7 +155,7 @@ ion-list {
 }
 .product-card:hover {
   cursor: pointer;
-  transform: scale(1.2);
+  transform: scale(1.05);
   z-index: 10;
   box-shadow: 0 0 20px 3px rgb(0, 0, 0, 0.1);
 }
@@ -188,7 +188,7 @@ img {
 }
 .product-card-subtitle {
   padding: 10px;
-  font-size: 1.1rem;
+  font-size: .9rem;
   letter-spacing: var(--ion-letter-spacing);
   color: rgb(51, 51, 51);
 }
@@ -203,6 +203,18 @@ img {
   }
   ion-col .product-filter {
     padding: 0 20px 0 0;
+  }
+  .filter{
+      z-index: 99;
+      position: fixed;
+      width: 100%;
+      background: #fff;
+      top: 9.5%;
+      padding: 9px 0 0 0;
+    }
+
+  .all-product{
+    margin: 4rem 0 0 0;
   }
 }
 </style>

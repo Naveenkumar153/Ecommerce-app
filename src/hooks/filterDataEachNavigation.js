@@ -18,22 +18,19 @@ function filterDataEachNavigation() {
   } = useNavigation();
 
   const productRouting = (path, productName) => {
-    if (path === "/mens") {
+    if (path === "/headphones") {
       productData.value = store.getters.fetchProducts;
-    } else if (path === "/womans") {
-      productData.value = store.getters.fetchProducts;
+      const headphones = productData.value.find(name => name.slug === productName);
+      store.dispatch("getFilterProduct", headphones);
+      router.push({ name: "headphones", query: { category: "headphones" } });
     } else if (path === "/laptops") {
       productData.value = store.getters.fetchProducts;
-      const laptops = productData.value.find(
-        (name) => name.slug === productName
-      );
+      const laptops = productData.value.find(name => name.slug === productName);
       store.dispatch("getFilterProduct", laptops);
       router.push({ name: "laptops", query: { category: "laptops" } });
     } else if (path === "/mobiles") {
       productData.value = store.getters.fetchProducts;
-      const mobiles = productData.value.find(
-        (name) => name.slug === productName
-      );
+      const mobiles = productData.value.find(name => name.slug === productName);
       console.log(mobiles);
       store.dispatch("getFilterProduct", mobiles);
       router.push({ name: "mobiles", query: { category: "mobiles" } });

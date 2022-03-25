@@ -45,7 +45,22 @@
     </ion-content>
     <ion-footer collapse="fade">
       <ion-toolbar>
-        <ion-title>Footer</ion-title>
+        <ion-grid>
+           <ion-row class="ion-justify-content-center ion-margin">
+              <ion-col class="ion-padding" size-xl="3" size-lg="3" size-md="3" size-sm="12" size="12">
+                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam ipsum voluptatem, beatae ullam molestiae iusto et temporibus voluptate molestias ratione.
+              </ion-col>
+              <ion-col class="ion-padding" size-xl="3" size-lg="3" size-md="3" size-sm="12" size="12">
+                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam ipsum voluptatem, beatae ullam molestiae iusto et temporibus voluptate molestias ratione.
+              </ion-col>
+              <ion-col class="ion-padding" size-xl="3" size-lg="3" size-md="3" size-sm="12" size="12">
+                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam ipsum voluptatem, beatae ullam molestiae iusto et temporibus voluptate molestias ratione.
+              </ion-col>
+              <ion-col class="ion-padding" size-xl="3" size-lg="3" size-md="3" size-sm="12" size="12">
+                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam ipsum voluptatem, beatae ullam molestiae iusto et temporibus voluptate molestias ratione.
+              </ion-col>
+           </ion-row>
+        </ion-grid>
       </ion-toolbar>
     </ion-footer>
   </ion-page>
@@ -65,6 +80,9 @@ import {
   IonItem,
   IonMenuButton,
   IonBackButton,
+  IonGrid,
+  IonCol,
+  IonRow,
 } from "@ionic/vue";
 import { computed } from "vue";
 import { useRouter, useRoute } from "vue-router";
@@ -83,6 +101,9 @@ export default {
     IonItem,
     IonMenuButton,
     IonBackButton,
+    IonGrid,
+    IonCol,
+    IonRow,
   },
   props: ["pageDefaultBackLink"],
   setup() {

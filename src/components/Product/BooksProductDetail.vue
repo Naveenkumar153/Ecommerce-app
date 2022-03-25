@@ -46,7 +46,7 @@
           <ion-card class="ion-margin-top">
             <ion-card-content>
               <ion-card-subtitle>Product Details</ion-card-subtitle>
-              <p>{{ product.description }}</p>
+              {{ product.description.replace(/(<([^>]+)>)/ig, "") }}
             </ion-card-content>
           </ion-card>
         </ion-col>
@@ -93,14 +93,12 @@ export default {
     IonIcon,
   },
   setup() {
-    let mainImg = ref("");
-    const store = useStore();
-    let product = reactive({});
-    product = store.getters.productDetails;
-    console.log(product);
+    let   mainImg = ref("");
+    const store   = useStore();
+    let   product = reactive({});
+          product = store.getters.productDetails;
     mainImg.value = product.assets[0].url;
     function imgChange(e) {
-      console.log(e.target.src);
       mainImg.value = e.target.src;
     }
     return { cartOutline, star, product, mainImg, imgChange };

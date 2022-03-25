@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { reactive } from "vue";
 import {
-  personOutline,
+  headsetOutline,
   womanOutline,
   laptopOutline,
   phonePortraitOutline,
@@ -9,34 +9,27 @@ import {
 } from "ionicons/icons";
 function useNavigation() {
   const menuItems = reactive([
-    { id: 1, title: "Men", icon: personOutline, path: "/mens", name: "mens" },
+    { id: 1, title: "Headphones", icon: headsetOutline, path: "/headphones", name: "headphones" },
     {
       id: 2,
-      title: "Woman",
-      icon: womanOutline,
-      path: "/womans",
-      name: "womans",
-    },
-    {
-      id: 3,
       title: "Laptop",
       icon: laptopOutline,
       path: "/laptops",
       name: "laptops",
     },
     {
-      id: 4,
+      id: 3,
       title: "Mobile",
       icon: phonePortraitOutline,
       path: "/mobiles",
       name: "mobiles",
     },
-    { id: 5, title: "Book", icon: bookOutline, path: "/books", name: "books" },
+    { id: 4, title: "Book", icon: bookOutline, path: "/books", name: "books" },
   ]);
 
   return {
     menuItems,
-    personOutline,
+    headsetOutline,
     womanOutline,
     laptopOutline,
     phonePortraitOutline,

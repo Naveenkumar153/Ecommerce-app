@@ -22,11 +22,15 @@ const BooksProductDetails = defineAsyncComponent(() =>
 const mobiles = defineAsyncComponent(() =>
   import("@/views/Product/MobilesProduct.vue")
 );
-// const MobilesProductDetails = defineAsyncComponent(() => import("@/components/Product/MobilesProductDetail.vue"));
+const MobilesProductDetails = defineAsyncComponent(() => import("@/components/Product/MobilesProductDetail.vue"));
 const laptops = defineAsyncComponent(() =>
   import("@/views/Product/LaptopProduct.vue")
 );
-// const LaptopProductDetails = defineAsyncComponent(()=>import("@/components/Product/LaptopProductDetail.vue"));
+const LaptopProductDetails = defineAsyncComponent(()=>import("@/components/Product/LaptopProductDetail.vue"));
+
+const HeadphoneProduct = defineAsyncComponent(() => import("@/views/Product/HeadphoneProduct.vue"));
+
+const HeadphoneProductDetail = defineAsyncComponent(() => import("@/components/Product/HeadphoneProductDetail.vue"));
 
 const cart = defineAsyncComponent(() => import("@/views/Cart/CartView.vue"));
 const payment = defineAsyncComponent(() =>
@@ -45,7 +49,20 @@ const routes = [
     component: BooksProductDetails,
   },
   { path: "/mobiles", name: "mobiles", component: mobiles },
+  {
+    path: "/mobiles/:pid",
+    component:MobilesProductDetails,
+  },
   { path: "/laptops", name: "laptops", component: laptops },
+  {
+    path: "/laptops/:pid",
+    component:LaptopProductDetails,
+  },
+  { path: "/headphones", name:'headphones', component:HeadphoneProduct},
+  {
+    path: "/headphones/:pid",
+    component:HeadphoneProductDetail
+  },
   { path: "/cart", name: "cart", component: cart },
   { path: "/payment", name: "payment", component: payment },
   { path: "/:pathMatch(.*)", name: "notfound", component: notFound },
