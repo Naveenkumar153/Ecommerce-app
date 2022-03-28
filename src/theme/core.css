@@ -9,3 +9,11 @@ ion-content {
 ion-header {
   padding: var(--ion-header-padding);
 }
+ion-grid {
+  max-width: 1328px;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}

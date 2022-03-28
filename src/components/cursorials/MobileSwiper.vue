@@ -1,41 +1,43 @@
 <template>
   <!-- eslint-disable  -->
-  <ion-grid>
-    <ion-row>
-      <ion-col size="12">
-        <swiper
-          :spaceBetween="30"
-          :centeredSlides="true"
-          :autoplay="{
-            delay: 2500,
-            disableOnInteraction: false,
-          }"
-          :pagination="{
-            clickable: true,
-          }"
-          :navigation="true"
-          :modules="modules"
-          class="mySwiper"
-        >
-          <swiper-slide
-            ><img src="../../assets/img/home/1.jpg" alt=""
-          /></swiper-slide>
-          <swiper-slide
-            ><img src="../../assets/img/home/2.jpg" alt=""
-          /></swiper-slide>
-          <swiper-slide
-            ><img src="../../assets/img/home/3.jpg" alt=""
-          /></swiper-slide>
-          <swiper-slide
-            ><img src="../../assets/img/home/4.jpg" alt=""
-          /></swiper-slide>
-          <swiper-slide
-            ><img src="../../assets/img/home/5.jpg" alt=""
-          /></swiper-slide>
-        </swiper>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <div class="container">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <swiper
+            :spaceBetween="30"
+            :centeredSlides="true"
+            :autoplay="{
+              delay: 2500,
+              disableOnInteraction: false,
+            }"
+            :pagination="{
+              clickable: true,
+            }"
+            :navigation="true"
+            :modules="modules"
+            class="mySwiper"
+          >
+            <swiper-slide
+              ><img src="../../assets/img/home/1.jpg" alt=""
+            /></swiper-slide>
+            <swiper-slide
+              ><img src="../../assets/img/home/2.jpg" alt=""
+            /></swiper-slide>
+            <swiper-slide
+              ><img src="../../assets/img/home/3.jpg" alt=""
+            /></swiper-slide>
+            <swiper-slide
+              ><img src="../../assets/img/home/4.jpg" alt=""
+            /></swiper-slide>
+            <swiper-slide
+              ><img src="../../assets/img/home/5.jpg" alt=""
+            /></swiper-slide>
+          </swiper>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </template>
 <script>
 /* eslint-disable */
@@ -65,6 +67,11 @@ export default {
 </script>
 
 <style scoped>
+.container{
+  display:flex;
+  justify-content: center;
+  width:100%;
+}
 html,
 body {
   position: relative;

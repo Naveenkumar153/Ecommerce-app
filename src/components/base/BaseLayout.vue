@@ -42,27 +42,61 @@
     </ion-header>
     <ion-content>
       <slot></slot>
+      <div class="ion-fixed">
+
+      </div>
+       <div class="footer">
+        <div class="container">
+          <ion-grid>
+              <ion-row>
+                  <ion-col  size-xl="3" size-lg="3" size-md="3" size-sm="12" size="12">
+                    <div class="download-app">
+                      <h3>Shop Non-Shop on NP Shop</h3>
+                      <h4>Download Our App</h4>
+                      <p>Download App for Android and ios mobile phone</p>
+                      <div class="images">
+                        <img src="../../assets/app-google.png" alt="Google Play" router-link="/">
+                        <img src="../../assets/app-mac.png" alt="App Store" router-link="/">
+                      </div>
+                    </div>
+                  </ion-col>
+                  <ion-col size-xl="3" size-lg="3" size-md="3" size-sm="12" size="12">
+                    <div class="footer-logo">
+                      <img src="../../assets/img/logo/logo.png" alt="logo" router-link="/">
+                    </div>
+                    <div class="footer-quote">
+                      <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, ut!
+                      </p>
+                    </div>
+                  </ion-col>
+                  <ion-col  size-xl="3" size-lg="3" size-md="3" size-sm="12" size="12">
+                    <div class="footer-links">
+                      <h3>Useful Links</h3>
+                      <ul>
+                        <li router-link="/">Coupons</li>
+                        <li router-link="/">Blog Post</li>
+                        <li router-link="/">Return Policy</li>
+                        <li router-link="/">Join Affiliate</li>
+                      </ul>
+                    </div>
+                  </ion-col>
+                  <ion-col  size-xl="3" size-lg="3" size-md="3" size-sm="12" size="12">
+                    <div class="social-media">
+                      <h3>Follow Us</h3>
+                      <ul lines="none">
+                        <li router-link="/">Facebook</li>
+                        <li router-link="/">Twitter</li>
+                        <li router-link="/">Instagram</li>
+                        <li router-link="/">Youtube</li>
+                      </ul>
+                    </div>
+                  </ion-col>
+              </ion-row>
+          </ion-grid>
+        </div>
+      </div>
     </ion-content>
-    <ion-footer collapse="fade">
-      <ion-toolbar>
-        <ion-grid>
-           <ion-row class="ion-justify-content-center ion-margin">
-              <ion-col class="ion-padding" size-xl="3" size-lg="3" size-md="3" size-sm="12" size="12">
-                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam ipsum voluptatem, beatae ullam molestiae iusto et temporibus voluptate molestias ratione.
-              </ion-col>
-              <ion-col class="ion-padding" size-xl="3" size-lg="3" size-md="3" size-sm="12" size="12">
-                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam ipsum voluptatem, beatae ullam molestiae iusto et temporibus voluptate molestias ratione.
-              </ion-col>
-              <ion-col class="ion-padding" size-xl="3" size-lg="3" size-md="3" size-sm="12" size="12">
-                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam ipsum voluptatem, beatae ullam molestiae iusto et temporibus voluptate molestias ratione.
-              </ion-col>
-              <ion-col class="ion-padding" size-xl="3" size-lg="3" size-md="3" size-sm="12" size="12">
-                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam ipsum voluptatem, beatae ullam molestiae iusto et temporibus voluptate molestias ratione.
-              </ion-col>
-           </ion-row>
-        </ion-grid>
-      </ion-toolbar>
-    </ion-footer>
   </ion-page>
 </template>
 
@@ -134,6 +168,11 @@ export default {
 html {
   font-family: "Roboto", sans-serif;
 }
+.container{
+  display:flex;
+  justify-content: center;
+  width:100%;
+}
 /* .site-header {
   max-width: 1328px;
 } */
@@ -188,6 +227,63 @@ html {
 }
 .logo {
   cursor: pointer;
+}
+
+.footer{
+  background:var(--ion-footer-color);
+}
+.footer .download-app h3{
+    font-size: 1.5rem;
+    letter-spacing: var(--ion-letter-spacing);
+}
+.footer .download-app h4{
+    font-size: 1.2rem;
+    letter-spacing: var(--ion-letter-spacing);
+}
+.footer .download-app p{
+    margin: 10px 0;
+    font-size: .9rem;
+     letter-spacing: var(--ion-letter-spacing);
+}
+.footer .download-app .images{
+    display: flex;
+    flex-direction: column;
+}
+.footer .download-app .images img{
+    margin: 10px 0;
+    object-fit: cover;
+    width: 120px;
+}
+.footer .footer-logo {
+  display: flex;
+  justify-content:center;
+}
+.footer .footer-logo img{
+  width:120px
+}
+.footer .footer-quote p{
+  text-align:center;
+  font-size:.9rem;
+  margin:20px 0 0 0;
+  letter-spacing: var(--ion-letter-spacing);
+}
+.footer .footer-links h3,
+.footer .social-media h3{
+  font-size:1.2rem;
+}
+.footer .footer-links ul,
+.footer .social-media ul{
+    list-style: none;
+    padding: 0;
+}
+
+.footer .footer-links ul li,
+.footer .social-media ul li{
+    font-size: 1rem;
+    padding: 10px 0;
+}
+.ion-fiexed{
+  min-height:calc(100% - 98px);
 }
 @media (min-width: 820px) {
   .menuBtn {

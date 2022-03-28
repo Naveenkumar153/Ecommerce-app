@@ -1,68 +1,70 @@
 <template>
   <!-- eslint-disable -->
   <base-layout pageDefaultBackLink="/">
-    <ion-grid>
-      <ion-row class="ion-justify-content-around filter">
-        <ion-col size-sm="4" size-md="3" size-lg="3" size-xl="3">
-          <div class="product-name">
-            <h2>{{ booksData.name }}</h2>
-          </div>
-        </ion-col>
-        <ion-col size-sm="4" size-md="3" size-lg="3" size-xl="3">
-          <div class="product-filter">
-            <ion-list>
-              <ion-item>
-                <ion-select
-                  placeholder="sort by"
-                  interface="popover"
-                  @ionChange="sort($event)"
-                >
-                  <ion-select-option value="asc"
-                    >Price: Low to High</ion-select-option
-                  ><ion-select-option value="desc"
-                    >Price: High to Low</ion-select-option
-                  >
-                </ion-select>
-              </ion-item>
-            </ion-list>
-          </div>
-        </ion-col>
-      </ion-row>
-      <ion-row class="ion-justify-content-center all-product">
-        <ion-col
-          v-for="product of displayUser"
-          :key="product.id"
-          size="10"
-          size-sm="4"
-          size-md="3"
-          size-lg="3"
-          size-xl="3"
-          class="productCol"
-        >
-          <ion-card class="product-card" @click="productDetails(product.id)">
-            <img :src="product.image.url" alt="image" />
-            <ion-card-header class="product-card-header">
-              <ion-card-subtitle class="product-card-subtitle">
-                {{ product.name }}
-              </ion-card-subtitle>
-            </ion-card-header>
-            <ion-card-content class="product-card-body">
-              <div class="price-card">
-                <h4>{{ product.price.formatted_with_symbol }}</h4>
-                <p>{{ product.extra_fields[1].name }}</p>
-                <span>{{ product.extra_fields[0].name }}</span>
-              </div>
-              <div class="product-rating">
-                <ion-badge color="success" slot="start" class="rate">
-                  {{ product.extra_fields[2].name }}
-                  <ion-icon :icon="star"></ion-icon>
-                </ion-badge>
-              </div>
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+      <div class="container">
+        <ion-grid>
+            <ion-row class=" ion-justify-content-center filter">
+              <ion-col size="6" size-sm="4" size-md="3" size-lg="3" size-xl="3">
+                <div class="product-name">
+                  <h2>{{ booksData.name }}</h2>
+                </div>
+              </ion-col>
+              <ion-col  size="6" size-sm="4" size-md="3" size-lg="3" size-xl="3">
+                <div class="product-filter">
+                  <ion-list>
+                    <ion-item>
+                      <ion-select
+                        placeholder="sort by"
+                        interface="popover"
+                        @ionChange="sort($event)"
+                      >
+                        <ion-select-option value="asc"
+                          >Price: Low to High</ion-select-option
+                        ><ion-select-option value="desc"
+                          >Price: High to Low</ion-select-option
+                        >
+                      </ion-select>
+                    </ion-item>
+                  </ion-list>
+                </div>
+              </ion-col>
+            </ion-row>
+          <ion-row class="all-product">
+              <ion-col
+                v-for="product of displayUser"
+                :key="product.id"
+                size="12"
+                size-sm="6"
+                size-md="4"
+                size-lg="3"
+                size-xl="3"
+                class="productCol"
+              >
+                <ion-card class="product-card" @click="productDetails(product.id)">
+                  <img :src="product.image.url" alt="image" />
+                  <ion-card-header class="product-card-header">
+                    <ion-card-subtitle class="product-card-subtitle">
+                      {{ product.name }}
+                    </ion-card-subtitle>
+                  </ion-card-header>
+                  <ion-card-content class="product-card-body">
+                    <div class="price-card">
+                      <h4>{{ product.price.formatted_with_symbol }}</h4>
+                      <p>{{ product.extra_fields[1].name }}</p>
+                      <span>{{ product.extra_fields[0].name }}</span>
+                    </div>
+                    <div class="product-rating">
+                      <ion-badge color="success" slot="start" class="rate">
+                        {{ product.extra_fields[2].name }}
+                        <ion-icon :icon="star"></ion-icon>
+                      </ion-badge>
+                    </div>
+                  </ion-card-content>
+                </ion-card>
+              </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
   </base-layout>
 </template>
 
@@ -115,7 +117,7 @@ export default {
     const router = useRouter();
     // getting the data useing getters
     let booksData = reactive({});
-    booksData = store.getters.filterProduct;
+      booksData = store.getters.filterProduct;
 
     // share the each productDetails datas
     function productDetails(productId) {
@@ -141,8 +143,6 @@ export default {
 </script>
 <style scoped>
 /* eslint-disable */
-
-
 .product-filter {
   display: flex;
   align-items: center;
@@ -166,9 +166,9 @@ img {
   -o-object-fit: contain;
   object-fit: contain;
 }
-.productCol {
+/* .productCol {
   margin: 10px;
-}
+} */
 .price-card {
   padding: 10px;
 }
@@ -188,6 +188,7 @@ img {
   letter-spacing: var(--ion-letter-spacing);
 }
 .product-card-subtitle {
+  height:50px;
   padding: 10px;
   font-size: .9rem;
   letter-spacing: var(--ion-letter-spacing);
@@ -199,21 +200,14 @@ img {
 }
 
 @media (max-width: 576px) {
-  ion-col .product-name {
-    padding: 0 0 0 20px;
-  }
-  ion-col .product-filter {
-    padding: 0 20px 0 0;
-  }
-    .filter{
+  .filter{
       z-index: 99;
       position: fixed;
       width: 100%;
       background: #fff;
-      top: 9.5%;
-      padding: 9px 0 0 0;
+      top: 11%;
+      left: 0;
     }
-
   .all-product{
     margin: 4rem 0 0 0;
   }

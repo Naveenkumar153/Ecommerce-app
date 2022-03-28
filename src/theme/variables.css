@@ -14,13 +14,14 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-product-price: #333333;
   /* I want to choose this colores */
   --ion-background-button-color: #ee5f73;
+  --ion-footer-color: #acabab;
   --ion-letter-spacing: 0.4px;
-  --ion-grid-padding-sm: 10px;
+  /* --ion-grid-padding-sm: 10px;
   --ion-grid-padding-md: 20px;
   --ion-grid-padding-lg: 30px;
   --ion-grid-padding-xl: 50px;
   --ion-grid-column-padding: 20px;
-  --ion-grid-row-padding: 20px;
+  --ion-grid-row-padding: 20px; */
 
   --ion-color-secondary: #ff9b29;
   --ion-color-secondary-rgb: 255, 155, 41;
