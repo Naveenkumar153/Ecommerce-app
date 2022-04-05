@@ -205,12 +205,12 @@ img {
 }
 @media (min-width:992px) and (max-width:1200px){
   .product-card-subtitle{
-    height:180px;
+    height: 210px;
   }
 }
 @media (max-width:992px){
   .product-card-subtitle{
-    height:120px;
+        height: 192px;
   }
 }
 @media (max-width:768px){
@@ -231,7 +231,7 @@ img {
     margin: 4rem 0 0 0;
   }
   .product-card-subtitle{
-    height:100px;
+    height:140px;
   }
 }
 

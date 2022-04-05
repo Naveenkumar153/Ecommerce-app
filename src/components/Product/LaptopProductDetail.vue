@@ -1,57 +1,66 @@
 <template>
   <!-- eslint-disable -->
   <base-layout pageDefaultBackLink="/books">
-    <ion-grid>
-      <ion-row class="ion-justify-content-center">
-        <ion-col size-xl="5" size-lg="5" size-md="5" size-sm="12" size="12">
-          <ion-card>
-            <div class="img">
-              <img :src="mainImg" alt="" />
+    <div class="container">
+      <ion-grid>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size-xl="5" size-lg="5" size-md="5" size-sm="12" size="12">
+            <ion-card class="card">
+              <div class="img">
+                <img :src="mainImg" alt="" />
+              </div>
+            </ion-card>
+            <div class="small-img-group">
+              <div class="small-img-col" v-for="image of product.assets.slice(0,4)">
+                <img
+                  :src="image.url"
+                  :alt="image.filename"
+                  @click="imgChange($event)"
+                />
+              </div>
             </div>
-          </ion-card>
-          <div class="small-img-group">
-            <div class="small-img-col" v-for="image of product.assets.slice(0,4)">
-              <img
-                :src="image.url"
-                :alt="image.filename"
-                @click="imgChange($event)"
-              />
-            </div>
-          </div>
-          <ion-button class="cart-btn">
-            <ion-icon :icon="cartOutline"></ion-icon> Add To Cart</ion-button
-          >
-        </ion-col>
-        <ion-col size-xl="7" size-lg="7" size-md="7" size-sm="12" size="12">
-          <ion-card>
-            <ion-card-content>
-              <ion-card-header class="product-card-body">
-                <ion-card-subtitle>{{ product.name }}</ion-card-subtitle>
-                <div class="price-card">
-                  <h4>{{ product.price.formatted_with_symbol }}</h4>
-                  <p>{{ product.extra_fields[1].name }}</p>
-                  <span color="success">{{
-                    product.extra_fields[0].name
-                  }}</span>
-                </div>
-                <div class="product-rating">
-                  <ion-badge color="success" slot="start" class="rate">
-                    {{ product.extra_fields[2].name }}
-                    <ion-icon :icon="star"></ion-icon>
-                  </ion-badge>
-                </div>
-              </ion-card-header>
-            </ion-card-content>
-          </ion-card>
-          <ion-card class="ion-margin-top">
-            <ion-card-content>
-              <ion-card-subtitle>Product Details</ion-card-subtitle>
-              {{ product.description.replace(/(<([^>]+)>)/ig, "") }}
-            </ion-card-content>
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+            <ion-button class="cart-btn">
+              <ion-icon :icon="cartOutline"></ion-icon> Add To Cart</ion-button
+            >
+          </ion-col>
+          <ion-col size-xl="7" size-lg="7" size-md="7" size-sm="12" size="12">
+            <ion-card >
+              <ion-card-content>
+                <ion-card-header class="product-card-body">
+                  <ion-card-subtitle>{{ product.name }}</ion-card-subtitle>
+                  <div class="price-card">
+                    <h4>{{ product.price.formatted_with_symbol }}</h4>
+                    <p>{{ product.extra_fields[1].name }}</p>
+                    <span color="success">{{
+                      product.extra_fields[0].name
+                    }}</span>
+                  </div>
+                  <div class="product-rating">
+                    <ion-badge color="success" slot="start" class="rate">
+                      {{ product.extra_fields[2].name }}
+                      <ion-icon :icon="star"></ion-icon>
+                    </ion-badge>
+                  </div>
+                </ion-card-header>
+              </ion-card-content>
+            </ion-card>
+            <ion-card class="ion-margin-top">
+              <ion-card-content>
+                <ion-card-subtitle>Product Details</ion-card-subtitle>
+                {{ product.description.replace(/(<([^>]+)>)/ig, "") }}
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="12" v-for="productImg of product.assets.slice(0,8)" :key="productImg.id">
+              <div class="product-img-list"> 
+                <img :src="productImg.url" :alt="productImg.filename">
+              </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
   </base-layout>
 </template>
 
@@ -101,7 +110,7 @@ export default {
     function imgChange(e) {
       mainImg.value = e.target.src;
     }
-    return { cartOutline, star, product, mainImg, imgChange };
+    return { cartOutline, star, product, mainImg, imgChange, };
   },
 };
 </script>
@@ -112,6 +121,9 @@ ion-row {
 }
 ion-col {
   padding: 10px;
+}
+.card{
+  box-shadow:none;
 }
 
 ion-card-subtitle {
@@ -172,7 +184,9 @@ ion-card-subtitle {
 }
 .small-img-group .small-img-col {
   flex-basis: 24%;
-  height: 75px;
+  height: 75px; 
+  border:1px solid #000;
+  margin:0 5px;
 }
 .small-img-group .small-img-col img {
   width: 100%;

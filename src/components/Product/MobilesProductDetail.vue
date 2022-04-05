@@ -5,7 +5,7 @@
       <ion-grid>
         <ion-row class="ion-justify-content-center">
           <ion-col size-xl="5" size-lg="5" size-md="5" size-sm="12" size="12">
-            <ion-card>
+            <ion-card class="card">
               <div class="img">
                 <img :src="mainImg" alt="" />
               </div>
@@ -50,6 +50,13 @@
                 {{ product.description.replace(/(<([^>]+)>)/ig, "") }}
               </ion-card-content>
             </ion-card>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="12" v-for="productImg of product.assets.slice(0,8)" :key="productImg.id">
+              <div class="product-img-list"> 
+                <img :src="productImg.url" :alt="productImg.filename">
+              </div>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -115,7 +122,9 @@ ion-row {
 ion-col {
   padding: 10px;
 }
-
+.card{
+  box-shadow:none;
+}
 ion-card-subtitle {
   font-size: 1.3rem;
 }
@@ -175,6 +184,8 @@ ion-card-subtitle {
 .small-img-group .small-img-col {
   flex-basis: 24%;
   height: 75px;
+  border:1px solid #000;
+  margin:0 5px;
 }
 .small-img-group .small-img-col img {
   width: 100%;

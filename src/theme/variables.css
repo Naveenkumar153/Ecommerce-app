@@ -16,12 +16,12 @@ http://ionicframework.com/docs/theming/ */
   --ion-background-button-color: #ee5f73;
   --ion-footer-color: #acabab;
   --ion-letter-spacing: 0.4px;
-  /* --ion-grid-padding-sm: 10px;
-  --ion-grid-padding-md: 20px;
-  --ion-grid-padding-lg: 30px;
-  --ion-grid-padding-xl: 50px;
-  --ion-grid-column-padding: 20px;
-  --ion-grid-row-padding: 20px; */
+  --ion-grid-padding-sm: 10px;
+  --ion-grid-padding-md: 15px;
+  --ion-grid-padding-lg: 20px;
+  --ion-grid-padding-xl: 25px;
+  --ion-grid-column-padding: 10px;
+  --ion-grid-row-padding: 10px;
 
   --ion-color-secondary: #ff9b29;
   --ion-color-secondary-rgb: 255, 155, 41;
@@ -37,7 +37,7 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-tertiary-shade: #4854e0;
   --ion-color-tertiary-tint: #6370ff;
 
-  --ion-color-success: #097e38;
+  --ion-color-success: #23bb75;
   --ion-color-success-rgb: 45, 211, 111;
   --ion-color-success-contrast: #ffffff;
   --ion-color-success-contrast-rgb: 255, 255, 255;
@@ -51,7 +51,7 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-warning-shade: #e0ac08;
   --ion-color-warning-tint: #ffca22;
 
-  --ion-color-danger: #eb445a;
+  --ion-color-danger: #f43397;
   --ion-color-danger-rgb: 235, 68, 90;
   --ion-color-danger-contrast: #ffffff;
   --ion-color-danger-contrast-rgb: 255, 255, 255;
