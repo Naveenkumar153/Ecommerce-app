@@ -21,7 +21,7 @@ export default {
     const { fetchProducts, productData } = useProductApi();
     onMounted(() => {
       fetchProducts();
-      store.getters.productData;
+      store.getters["product/productData"];
     });
   },
 };

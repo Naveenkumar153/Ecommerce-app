@@ -12,12 +12,13 @@ function useProductApi(refresh = false) {
       spinner: "bubbles",
     });
     await loading.present();
-    const product = await store.dispatch("fetchProduct", {
+    const product = await store.dispatch("product/fetchProduct", {
       foreceUpdate: refresh,
     });
+    let   createCart = store.dispatch('cart/createCart');
+    console.log(createCart)
     productData.value = store.getters.fetchProducts;
     loading.dismiss();
-    console.log(product);
     console.log(productData.value);
   };
   return {

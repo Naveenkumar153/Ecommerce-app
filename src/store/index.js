@@ -1,24 +1,13 @@
 /* eslint-disable */
 import { createStore } from "vuex";
 import cartModule from "./modules/Cart/index.js";
-import rootGetters from "./getters";
-import rootActions from "./action";
-import rootMutations from "./mutation";
+import productModule from './modules/Products/index.js';
 const store = createStore({
   modules: {
-    cart: cartModule,
+    cart   : cartModule,
+    product: productModule 
   },
-  state() {
-    return {
-      lastFetch: null,
-      products: [],
-      filterProduct: [],
-      productDetails: [],
-    };
-  },
-  getters: rootGetters,
-  mutations: rootMutations,
-  actions: rootActions,
+  state() { },
 });
 
 export default store;

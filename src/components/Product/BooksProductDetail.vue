@@ -19,8 +19,15 @@
                 />
               </div>
             </div>
-            <ion-button class="cart-btn" color="danger" @click="addCart($event)" >
-              <ion-icon :icon="cartOutline"></ion-icon> Add to cart 
+            <ion-button class="cart-btns" color="danger" @click="addCart" >
+              <div class="add-cart cart-btn" v-if="cartName.show">
+                  <ion-icon :icon="cartOutline"></ion-icon>
+                  <span>Add to cart</span>
+              </div>
+              <div class="go-cart cart-btn" v-else>
+                  <span>Go to cart</span>
+                  <ion-icon :icon="arrowForwardOutline"></ion-icon>
+              </div>
             </ion-button>
           </ion-col>
           <ion-col size-xl="7" size-lg="7" size-md="7" size-sm="12" size="12">
@@ -81,9 +88,10 @@ import {
   IonCardContent,
   IonIcon,
 } from "@ionic/vue";
-import { star, cartOutline } from "ionicons/icons";
+import { star, cartOutline,arrowForwardOutline } from "ionicons/icons";
 import { ref,reactive } from "vue";
 import { useStore } from "vuex";
+import { useRouter } from 'vue-router';
 export default {
   components: {
     IonButton,
@@ -101,30 +109,52 @@ export default {
     IonIcon,
   },
   setup() {
-    // add cart
-    let   cartName      = reactive({
-          show:false
-    });
-    function addCart(e){
-        cartName.show = !cartName.show
-        e.target.value = cartName.show ? 'Add to Cart' : 'Go to Cart'
-        console.log(cartName.show)
-        console.log(e.target.value)
-    }
-
     // get data
-    const store         = useStore();
-    let   product       = reactive({});
-          product       = store.getters.productDetails;
+    const store    = useStore();
+    const router   = useRouter();
+    let   product  = reactive({});
+          product  = store.getters["product/productDetails"];
+    let   cartName = reactive({ show:true });
+    let   mainImg  = ref("");
+    let   getCart  = store.getters['cart/createCart'];
+    console.log(getCart)
+    console.log(getCart.id)
 
     // Image filter
-    let   mainImg       = ref("");
     function imgChange(e) {
       mainImg.value = e.target.src;
     }
     mainImg.value = product.assets[0].url;
 
-    return { cartOutline, star, product, mainImg, imgChange,addCart,cartName };
+    // add cart
+    function addCart(){
+        cartName.show  = !cartName.show
+        // e.target.value = cartName.show ? 'Add to Cart' : 'Go to Cart'
+        let cartQuandity = 0;
+        if(!cartName.show){
+          console.log('product added')
+          store.dispatch('cart/addToCart',{ 
+              cartValue:{
+                cartId:getCart.id,
+                proId:product.id,
+                quantity: ++cartQuandity
+              } 
+          })
+        }else{
+          console.log('go to cart');
+          router.push('/cart')
+        }
+    }
+    return { 
+      arrowForwardOutline,
+      cartOutline, 
+      star, 
+      product, 
+      mainImg, 
+      imgChange,
+      addCart,
+      cartName 
+    };
   },
 };
 </script>
@@ -162,10 +192,22 @@ ion-card-subtitle {
   color: var(--ion-color-success);
 }
 
-.cart-btn {
+.cart-btns {
   width: 100%;
   margin: 1rem 0 0 0;
   background: var(--ion-color-danger);
+}
+
+.cart-btns .cart-btn{
+  display:flex;
+  align-items:center;
+  /* justify-content: center; */
+}
+.cart-btns .cart-btn span{
+  margin:10px;
+}
+.cart-btns .cart-btn ion-icon{
+  font-size:1.1rem;
 }
 .product-rating {
   width: 70px;

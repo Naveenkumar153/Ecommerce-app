@@ -19,26 +19,26 @@ function filterDataEachNavigation() {
 
   const productRouting = (path, productName) => {
     if (path === "/headphones") {
-      productData.value = store.getters.fetchProducts;
+      productData.value = store.getters["product/fetchProducts"];
       const headphones = productData.value.find(name => name.slug === productName);
-      store.dispatch("getFilterProduct", headphones);
+      store.dispatch("product/getFilterProduct", headphones);
       router.push({ name: "headphones", query: { category: "headphones" } });
     } else if (path === "/laptops") {
-      productData.value = store.getters.fetchProducts;
+      productData.value = store.getters["product/fetchProducts"];
       const laptops = productData.value.find(name => name.slug === productName);
-      store.dispatch("getFilterProduct", laptops);
+      store.dispatch("product/getFilterProduct", laptops);
       router.push({ name: "laptops", query: { category: "laptops" } });
     } else if (path === "/mobiles") {
-      productData.value = store.getters.fetchProducts;
+      productData.value = store.getters["product/fetchProducts"];
       const mobiles = productData.value.find(name => name.slug === productName);
       console.log(mobiles);
-      store.dispatch("getFilterProduct", mobiles);
+      store.dispatch("product/getFilterProduct", mobiles);
       router.push({ name: "mobiles", query: { category: "mobiles" } });
     } else if (path === "/books") {
-      productData.value = store.getters.fetchProducts;
+      productData.value = store.getters["product/fetchProducts"];
       const books = productData.value.find((name) => name.slug === productName);
       console.log(books);
-      store.dispatch("getFilterProduct", books);
+      store.dispatch("product/getFilterProduct", books);
       router.push({ name: "books", query: { category: "books" } });
     } else {
       console.log("data not available");

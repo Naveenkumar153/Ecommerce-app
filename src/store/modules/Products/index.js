@@ -1,17 +1,20 @@
 /*eslint-disable*/
 
-// import actions from "../../action";
-// import mutation from "../../mutation";
-// import getters from "../../getters";
+import actions from "./action";
+import mutations from "./mutation";
+import getters from "./getters";
 
-// export default {
-//   namespaced: true,
-//   state() {
-//     return {
-//       products: [],
-//     };
-//   },
-//   getters,
-//   mutation,
-//   actions,
-// };
+export default {
+  namespaced: true,
+  state() {
+    return {
+        lastFetch: null,
+        products: [],
+        filterProduct: [],
+        productDetails: [],
+      };
+  },
+  getters,
+  mutations,
+  actions,
+};

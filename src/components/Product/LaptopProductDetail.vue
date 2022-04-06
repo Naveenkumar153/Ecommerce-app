@@ -105,7 +105,7 @@ export default {
     let   mainImg = ref("");
     const store   = useStore();
     let   product = reactive({});
-          product = store.getters.productDetails;
+          product  = store.getters["product/productDetails"];
     mainImg.value = product.assets[0].url;
     function imgChange(e) {
       mainImg.value = e.target.src;

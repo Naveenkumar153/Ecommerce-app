@@ -117,14 +117,14 @@ export default {
     const router = useRouter();
     // getting the data useing getters
     let booksData = reactive({});
-      booksData = store.getters.filterProduct;
+      booksData = store.getters["product/filterProduct"];
 
     // share the each productDetails datas
     function productDetails(productId) {
       const productDetail = displayUser.value.find(
         (proId) => proId.id === productId
       );
-      store.dispatch("productDetails", productDetail);
+      store.dispatch("product/productDetails", productDetail);
       console.log(productDetail);
       router.push({ path: "/books/" + productId });
     }

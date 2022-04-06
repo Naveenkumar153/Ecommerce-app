@@ -1,2 +1,6 @@
 /* eslint-disable */
-export default {};
+export default {
+    createCart(state){
+        return state.createCart;
+    }
+};
