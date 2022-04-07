@@ -11,21 +11,25 @@ export default {
             console.error(error)
         }
     },
-   async addToCart(_context,payload){
-        // let data = JSON.stringify(payload)
-        let data     = payload
-        let quantity = data.cartValue.quantity.toString()
-        console.log(quantity)
+   async addToCart(_context,payload){ 
         try{
-            const api               = `carts/${data.cartValue.cartId}`;
+            const api               = `carts/${payload.cartValue.cartId}`;
             const {data:addProduct} = await axios.post(api,
-                `'{"id":"${data.cartValue.proId}","quantity":${quantity}}'`,
-                {
-                    headers:{'Content-Type': 'application/json'}
-                });
-            console.log(addProduct)
+                {"id":`${payload.cartValue.proId}`,"quantity":`${payload.cartValue.quantity}`},
+                {headers:{'Content-Type': 'application/json'}});
         }catch(error){
-            console.error(error + ' Add Product Error')
+            console.error(error + ' Add Cart Error') 
+        }
+    },
+    async retriveCart({commit,getters}){
+        try {
+            const cartId = getters.createCart;
+            const api    = `carts/${cartId.id}`;
+            const {data:getCartData} = await axios.get(api);
+            commit('retriveCart',getCartData);
+            console.log(getCartData)
+        } catch (error) {
+            console.error(error + 'Retrive Cart Error');
         }
     }
 };

@@ -8,7 +8,8 @@ export default {
   namespaced: true,
   state() {
     return{
-      createCart:[]
+      createCart:[],
+      retriveCartData:[],
     }
   },
   getters,

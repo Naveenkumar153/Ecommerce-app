@@ -1,7 +1,9 @@
 /* eslint-disable */
 export default {
-    createTheCart(state,payload){
-        state.createCart = payload;
-        console.log(state.createCart)
+    createTheCart(state,cart){
+        state.createCart = cart;
+    },
+    retriveCart(state,cartData){
+        state.retriveCartData = cartData
     }
 };
