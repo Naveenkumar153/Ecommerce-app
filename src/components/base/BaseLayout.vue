@@ -33,9 +33,10 @@
             <ion-icon :icon="personOutline" class="icon" />
             <span class="icon-text ion-text-lowercase">profile</span>
           </div>
-          <div class="header-icon">
+          <div class="header-icon" @click="goToCart">
+            <ion-badge color="danger" class="badge" >{{ productCount }}</ion-badge>
             <ion-icon :icon="cartOutline" class="icon" />
-            <span class="icon-text ion-text-lowercase">cart</span>
+            <span class="icon-text ion-text-lowercase" >cart</span>
           </div>
         </div>
       </ion-toolbar>
@@ -117,9 +118,11 @@ import {
   IonGrid,
   IonCol,
   IonRow,
+  IonBadge,
 } from "@ionic/vue";
-import { computed } from "vue";
+import { computed,ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
+import { useStore } from 'vuex';
 import { cartOutline, personOutline } from "ionicons/icons";
 import filterDataNavigation from "../../hooks/filterDataEachNavigation";
 export default {
@@ -138,16 +141,26 @@ export default {
     IonGrid,
     IonCol,
     IonRow,
+    IonBadge
   },
   props: ["pageDefaultBackLink"],
   setup() {
     // hooks
-    const router = useRouter();
-    const route = useRoute();
+    const store        = useStore();
+    const router       = useRouter();
+    const route        = useRoute();
+    // let   productCount = ref('');
     const currentRouteName = computed(() => route.name === "home");
     const { menuItems, productRouting } = filterDataNavigation();
+    // product qty 
+    let productCount = computed(() => {
+      return store.getters['cart/addToCart'];
+    });
     function homepage() {
       router.push("/");
+    }
+    function goToCart(){
+      router.push('/cart')
     }
     return {
       cartOutline,
@@ -156,6 +169,8 @@ export default {
       productRouting,
       homepage,
       currentRouteName,
+      productCount,
+      goToCart
     };
   },
 };
@@ -203,11 +218,22 @@ html {
   width: 110px;
   height: 50px;
   align-items: center;
+  position:relative;
+}
+.header-icons .badge{
+    position: absolute;
+    z-index: 10;
+    font-size: 0.7rem;
+    right: 2px;
+    top: -3px;
+    padding: 5px;
+    border-radius: 50%;
 }
 .header-icons .header-icon {
   width: 100%;
   height: 100%;
   text-align: center;
+  cursor:pointer;
 }
 .header-icons .icon {
   width: 24px;

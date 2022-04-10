@@ -19,9 +19,16 @@
                 />
               </div>
             </div>
-            <ion-button class="cart-btn">
-              <ion-icon :icon="cartOutline"></ion-icon> Add To Cart</ion-button
-            >
+            <ion-button class="cart-btns" color="danger" @click="addCart" >
+              <div class="add-cart cart-btn" v-if="cartName.show">
+                  <ion-icon :icon="cartOutline"></ion-icon>
+                  <span>Add to cart</span>
+              </div>
+              <div class="go-cart cart-btn" v-else>
+                  <span>Go to cart</span>
+                  <ion-icon :icon="arrowForwardOutline"></ion-icon>
+              </div>
+            </ion-button>
           </ion-col>
           <ion-col size-xl="7" size-lg="7" size-md="7" size-sm="12" size="12">
             <ion-card>
@@ -81,10 +88,11 @@ import {
   IonCardContent,
   IonIcon,
 } from "@ionic/vue";
-import { star, cartOutline } from "ionicons/icons";
+import { star, cartOutline,arrowForwardOutline } from "ionicons/icons";
 import { ref } from "vue";
 import { reactive } from "vue";
 import { useStore } from "vuex";
+import useCart from '../../hooks/cart';
 export default {
   components: {
     IonButton,
@@ -106,11 +114,22 @@ export default {
     const store   = useStore();
     let   product = reactive({});
           product  = store.getters["product/productDetails"];
-    mainImg.value = product.assets[0].url;
+    // add cart
+    const { cartName,addCart } =  useCart(product);      
     function imgChange(e) {
       mainImg.value = e.target.src;
     }
-    return { cartOutline, star, product, mainImg, imgChange };
+    mainImg.value = product.assets[0].url;
+    return { 
+        cartOutline,
+        star,
+        product,
+        mainImg,
+        imgChange,
+        arrowForwardOutline,
+        cartName,
+        addCart 
+      };
   },
 };
 </script>
@@ -145,10 +164,23 @@ ion-card-subtitle {
   color: var(--ion-color-success);
 }
 
-.cart-btn {
+
+.cart-btns {
   width: 100%;
   margin: 1rem 0 0 0;
-  background: var(--ion-background-button-color);
+  background: var(--ion-color-danger);
+}
+
+.cart-btns .cart-btn{
+  display:flex;
+  align-items:center;
+  /* justify-content: center; */
+}
+.cart-btns .cart-btn span{
+  margin:10px;
+}
+.cart-btns .cart-btn ion-icon{
+  font-size:1.1rem;
 }
 .product-rating {
   width: 70px;

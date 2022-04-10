@@ -91,7 +91,7 @@ import {
 import { star, cartOutline,arrowForwardOutline } from "ionicons/icons";
 import { ref,reactive } from "vue";
 import { useStore } from "vuex";
-import { useRouter } from 'vue-router';
+import useCart from '../../hooks/cart';
 export default {
   components: {
     IonButton,
@@ -111,40 +111,17 @@ export default {
   setup() {
     // get data
     const store    = useStore();
-    const router   = useRouter();
     let   product  = reactive({});
           product  = store.getters["product/productDetails"];
-    let   cartName = reactive({ show:true });
-    let   mainImg  = ref("");
-    let   getCart  = store.getters['cart/createCart'];
-    console.log(getCart)
-    console.log(getCart.id)
-
+    // add cart
+    const { cartName,addCart } =  useCart(product);      
     // Image filter
+    let   mainImg  = ref("");
     function imgChange(e) {
       mainImg.value = e.target.src;
     }
     mainImg.value = product.assets[0].url;
-
-    // add cart
-    function addCart(){
-        cartName.show  = !cartName.show
-        // e.target.value = cartName.show ? 'Add to Cart' : 'Go to Cart'
-        let cartQuandity = 0;
-        if(!cartName.show){
-          console.log('product added')
-          store.dispatch('cart/addToCart',{ 
-              cartValue:{
-                cartId:getCart.id,
-                proId:product.id,
-                quantity: ++cartQuandity
-              } 
-          })
-        }else{
-          console.log('go to cart');
-          router.push('/cart')
-        }
-    }
+    
     return { 
       arrowForwardOutline,
       cartOutline, 

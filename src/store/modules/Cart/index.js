@@ -9,7 +9,11 @@ export default {
   state() {
     return{
       createCart:[],
-      retriveCartData:[],
+      retriveCartData:{},
+      // items: [],
+      qty: 0,
+      // productCount:0,
+      // updateCartData:{},
     }
   },
   getters,
