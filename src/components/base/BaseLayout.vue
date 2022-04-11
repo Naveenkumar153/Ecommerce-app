@@ -34,7 +34,7 @@
             <span class="icon-text ion-text-lowercase">profile</span>
           </div>
           <div class="header-icon" @click="goToCart">
-            <ion-badge color="danger" class="badge" >{{ productCount }}</ion-badge>
+            <ion-badge color="danger" class="badge" v-if="productCount">{{ productCount }}</ion-badge>
             <ion-icon :icon="cartOutline" class="icon" />
             <span class="icon-text ion-text-lowercase" >cart</span>
           </div>

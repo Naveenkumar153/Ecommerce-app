@@ -41,13 +41,22 @@ export default {
             const {data:updateData} = await axios.put(api,{"quantity":`${data.cartValue.quantity}`},
             {headers:{'Content-Type': 'application/json'}}
             )
-            console.log(updateData)
             context.commit('updateCartItem',updateData)
+            console.log(updateData)
         } catch (error) {
             console.error(error + ' update cart item error')
         }
     },
-    // productCount({commit,state}){ 
-    //     commit('productCount',++state.productCount)
-    // },
+    async deleteItemToCart(context,payload){
+        try {
+            let data = payload
+            console.log(data);
+            const api = `carts/${data.cartValue.cartId}/items/${data.cartValue.productId}`;
+            const { data:deleteData } = await axios.delete(api);
+            console.log(deleteData);
+            context.commit('deleteItemToCart',deleteData)
+        } catch (error) {
+            console.error(error + ' Delete cart item error')
+        }
+    }
 };

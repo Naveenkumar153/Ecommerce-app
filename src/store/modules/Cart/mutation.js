@@ -4,7 +4,7 @@ export default {
         state.createCart = cart;
     },
     retriveCart(state,cartData){
-        console.log(cartData)
+        // console.log(cartData)
         state.retriveCartData = cartData
     },
     productCount(state,count){
@@ -12,15 +12,14 @@ export default {
     },
     updateCartItem(state,updateData){
         state.retriveCartData = updateData
+        console.log(state.retriveCartData)
     },
-    addToCart(state,payload){
-        console.log(payload);
+    addToCart(state){
         state.qty++;
-        // const product = payload;
-        // const productInCartIndex = state.items.findIndex(
-        //     (ci) => ci.productId === productData.id
-        // ); 
-        // console.log(product);
-        // console.log(productInCartIndex)
+    },
+    deleteItemToCart(state,deleteData){
+        console.log(deleteData)
+        state.retriveCartData = deleteData;
+        state.qty--;
     }
 };
