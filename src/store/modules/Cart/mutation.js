@@ -7,18 +7,13 @@ export default {
         // console.log(cartData)
         state.retriveCartData = cartData
     },
-    productCount(state,count){
-        state.productCount = count
-    },
     updateCartItem(state,updateData){
         state.retriveCartData = updateData
-        console.log(state.retriveCartData)
     },
-    addToCart(state){
-        state.qty++;
+    addToCart(state,payload){
+        state.qty = payload.cart.total_unique_items
     },
     deleteItemToCart(state,deleteData){
-        console.log(deleteData)
         state.retriveCartData = deleteData;
         state.qty--;
     }

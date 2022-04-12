@@ -2,7 +2,7 @@
   <!-- eslint-disable -->
   <base-layout  pageDefaultBackLink="/">
      <div class="container">
-        <ion-grid v-if="retreiveData.line_items || retreiveData.cart.line_items ">
+        <ion-grid v-if="dataHereOrNot(retreiveData)">
           <ion-row class="product-cart-header">
              <ion-col size="6" class="product-cart-header-item">
                 <h4 class="product-names">Product</h4>
@@ -36,7 +36,7 @@
               <ion-col  size="3" class="col-start"> 
                   <div class="product-quantity">
                     <!-- :disabled="quantity" -->
-                     <ion-button :disabled="quantity" color="light"
+                     <ion-button :disabled="disableBtn(cart.quantity)" color="light"
                       @click="removeItemToCart(cart.id)">
                         <ion-icon :icon="removeSharp"></ion-icon>
                      </ion-button>
@@ -58,7 +58,6 @@
                 <div class="total-item">
                   <h4>Total</h4>
                   <p>{{ subTotal(retreiveData) }}</p>
-                  <!-- <p>{{ subTotal(retreiveData.subtotal.formatted_with_symbol) }}</p> -->
                 </div>
              </ion-col>
            </ion-row>
@@ -66,9 +65,12 @@
         <ion-grid v-else>
             <ion-row>
               <ion-col size="12" class="ion-align-items-center">
-                  <div class="render ">
+                  <div class="emp-cart">
                       <h4>Your cart is empty</h4>
-                      <ion-button color="danger" fill="outline" @click="goToProduct"> Purcharse </ion-button>
+                      <div class="emp-cart-img">
+                        <img src="../../assets/empty-cart.png" alt="">
+                      </div>
+                      <ion-button class="emp-cart-btn" color="danger" fill="outline" @click="goToProduct"> Purcharse </ion-button>
                   </div>
               </ion-col>
             </ion-row>
@@ -91,10 +93,11 @@ import {
   IonIcon,
   loadingController,
 } from "@ionic/vue";
-import { reactive,computed,onUpdated } from 'vue';
+import { reactive,computed,watch } from 'vue';
 import { useStore } from "vuex";
 import { useRouter } from 'vue-router';
 import { addOutline,removeSharp,trashSharp } from "ionicons/icons";
+import  useCartItemCURD from '../../hooks/cartItemsCURD';
 export default {
   components:{
     IonGrid,
@@ -116,6 +119,23 @@ export default {
     retreiveData = computed(() => {
       return store.getters['cart/retriveCart']; 
     })
+    // check data if here or not
+    let dataHereOrNot = reactive({});
+        dataHereOrNot = computed(() => {
+      return function(retreiveData){
+         if(retreiveData.line_items == 0){
+           return false;
+         }else if(retreiveData.line_items){
+           return true;
+         }else if(retreiveData.cart.line_items){
+           return true;
+         }else if(retreiveData.cart.line_items == 0){
+           return false;
+         }else if(!retreiveData){
+           return false;
+         }
+      }
+    })
     // update cart data
      let  cartItem = computed(() => {
        return function(retreiveData){
@@ -126,19 +146,20 @@ export default {
          }
        }
     })
-    let   quantity = computed(() => {
+     let  quantity = computed(() => {
+        return function(price){
+          return price
+        }
+    });
+     let  disableBtn = computed(() => {
        return function(price){
-         console.log(price)
-          // let condition =  1 == price && 1 >= price;
-          1 == price ? true : false;
-         return price
+          if(1 == price) 
+             return true;
+          else 
+            return false;
        }
     });
-    // let minizeBtnDisable = computed(() => {
-    //      let condition =  1 == price || 1 > price;
-    //      condition ? true : false;
-    // })
-    let   subTotal = computed(() => {
+     let  subTotal = computed(() => {
        return function(retreiveData){
             if(retreiveData.line_items){
               return retreiveData.subtotal.formatted_with_symbol
@@ -150,19 +171,14 @@ export default {
 
     let  addItemToCart  =  async (id) => {
        if(retreiveData.value.cart){
-         console.log(retreiveData.value.cart)
-         let product = retreiveData.value.cart.line_items.find(proId => {
-            if(proId.id === id){
-              console.log(proId);
-              return proId
-            }
-          })
+         let { product } = useCartItemCURD(retreiveData,id);
+          console.log(product)
           const loading = await loadingController.create({
                   message:"Added...",
                   spinner:"dots"
               })
           await loading.present();
-          let data =  await store.dispatch('cart/updateCartItem',{
+           await store.dispatch('cart/updateCartItem',{
             cartValue:{
               cartId   : retreiveData.value.cart.id,
               productId: product.id,
@@ -172,17 +188,14 @@ export default {
           loading.dismiss();
         }else if(retreiveData.value.line_items){
             console.log(retreiveData.line_items)
-            let product = retreiveData.value.line_items.find(proId => {
-                  if(proId.id === id){
-                    return proId
-                  }
-              })
+            let { product } = useCartItemCURD(retreiveData,id);
+            console.log(product)
             const loading = await loadingController.create({
                     message:"Added...",
                     spinner:"dots"
                 })
             await loading.present();
-            let data =  await store.dispatch('cart/updateCartItem',{
+             await store.dispatch('cart/updateCartItem',{
               cartValue:{
                 cartId   : retreiveData.value.id,
                 productId: product.id,
@@ -196,18 +209,13 @@ export default {
     };
     let removeItemToCart = async (id) => {
         if(retreiveData.value.cart){
-         let product = retreiveData.value.cart.line_items.find(proId => {
-            if(proId.id === id){
-              console.log(proId);
-              return proId
-            }
-          })
+          let { product } = useCartItemCURD(retreiveData,id);
           const loading = await loadingController.create({
                   message:"Removed...",
                   spinner:"dots"
               })
           await loading.present();
-          let data =  await store.dispatch('cart/updateCartItem',{
+           await store.dispatch('cart/updateCartItem',{
             cartValue:{
               cartId   : retreiveData.value.cart.id,
               productId: product.id,
@@ -217,17 +225,13 @@ export default {
           loading.dismiss();
         }else if(retreiveData.value.line_items){
             console.log(retreiveData.line_items)
-            let product = retreiveData.value.line_items.find(proId => {
-                  if(proId.id === id){
-                    return proId
-                  }
-              })
+            let { product } = useCartItemCURD(retreiveData,id);
             const loading = await loadingController.create({
                     message:"Removed...",
                     spinner:"dots"
                 })
             await loading.present();
-            let data =  await store.dispatch('cart/updateCartItem',{
+             await store.dispatch('cart/updateCartItem',{
               cartValue:{
                 cartId   : retreiveData.value.id,
                 productId: product.id,
@@ -238,91 +242,63 @@ export default {
         }else {
           console.log('failed');
         }
-    }
+    };
     let deleteItemToCart = async (id) => {
          if(retreiveData.value.cart){
-         let product = retreiveData.value.cart.line_items.find(proId => {
-            if(proId.id === id){
-              console.log(proId);
-              return proId
-            }
-          })
+          let { product } = useCartItemCURD(retreiveData,id);
           console.log(product)
           const loading = await loadingController.create({
                   message:"Deleted...",
                   spinner:"dots"
               })
           await loading.present();
-          let data =   await store.dispatch('cart/deleteItemToCart',{
+          let data = await store.dispatch('cart/deleteItemToCart',{
             cartValue:{
               cartId   : retreiveData.value.cart.id,
               productId: product.id,
             }
           })
+          console.log(data)
           loading.dismiss();
         }else if(retreiveData.value.line_items){
             console.log(retreiveData.value.line_items)
-            let product = retreiveData.value.line_items.find(proId => {
-                  if(proId.id === id){
-                    return proId
-                  }
-              })
+            let { product } = useCartItemCURD(retreiveData,id);
             const loading = await loadingController.create({
                     message:"Deleted...",
                     spinner:"dots"
                 })
             await loading.present();
-             let data =   await store.dispatch('cart/deleteItemToCart',{
+            let data = await store.dispatch('cart/deleteItemToCart',{
                 cartValue:{
                   cartId   : retreiveData.value.id,
                   productId: product.id,
                 }
              })
+             console.log(data)
             loading.dismiss();
+            // router.replace('/')
         }else {
           console.log('failed');
         }
-    }
+    };
     function goToProduct(){
       router.replace('/');
     }
-    // Quantity logic
-    
-    // let addQuantityDisableOrEnable = computed(() => 10 == quantity.value ? true : false)
-    // let lessQuantityDisableOrEnable = computed(() => {
-    //    if(1 == quantity.value || 1 > quantity.value){
-    //      return true;
-    //    }else{
-    //      false
-    //    }
-    // })
-    // function addQuantity(){
-    //   return ++quantity.value
-    // }
-    // function lessQuantity(){
-    //   return --quantity.value
-    // }
     return{
       addOutline,
       removeSharp,
       trashSharp,
-      // addQuantity,
-      // lessQuantity,
-      // quantity,
-      // addQuantityDisableOrEnable,
-      // lessQuantityDisableOrEnable,
       retreiveData,
       addItemToCart,
       removeItemToCart,
       goToProduct,
-      // getData
       quantity,
       subTotal,
       cartItem,
-      deleteItemToCart
+      deleteItemToCart,
+      dataHereOrNot,
+      disableBtn
     }
-
-
   },
 };
 </script>
@@ -366,8 +342,12 @@ export default {
     justify-content: space-between;
 }
 
-.render{
+.emp-cart{
   text-align:center;
+}
+
+.emp-cart .emp-cart-btn{
+  margin:20px 0;
 }
 
 @media (min-width:576px) {

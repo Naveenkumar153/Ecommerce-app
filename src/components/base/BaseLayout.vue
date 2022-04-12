@@ -12,12 +12,14 @@
           ></ion-back-button>
         </ion-buttons>
         <ion-title slot="start" class="header-title">
-          <img
-            src="../../assets/img/logo/logo.png"
-            alt="logo"
-            class="logo"
-            @click="homepage"
-          />
+          <div class="img">
+            <img
+              src="../../assets/img/logo/logo.png"
+              alt="logo"
+              class="logo"
+              @click="homepage"
+            />
+          </div>
         </ion-title>
         <ion-list slot="start" class="list ion-text-center" lines="none">
           <ion-item
@@ -29,10 +31,10 @@
           >
         </ion-list>
         <div class="header-icons" slot="end">
-          <div class="header-icon">
+          <!-- <div class="header-icon">
             <ion-icon :icon="personOutline" class="icon" />
             <span class="icon-text ion-text-lowercase">profile</span>
-          </div>
+          </div> -->
           <div class="header-icon" @click="goToCart">
             <ion-badge color="danger" class="badge" v-if="productCount">{{ productCount }}</ion-badge>
             <ion-icon :icon="cartOutline" class="icon" />
@@ -159,7 +161,8 @@ export default {
     function homepage() {
       router.push("/");
     }
-    function goToCart(){
+   async function goToCart(){
+      await store.dispatch('cart/retriveCart');
       router.push('/cart')
     }
     return {
@@ -193,8 +196,12 @@ html {
 } */
 .header-title {
   text-align: center;
+  /* margin: 0 0 0 50px; */
 }
-.header-title img {
+/* .header-title .img {
+  text-align: end;
+} */
+.header-title .img img {
   width: 47px;
 }
 /* .site-logo .logo {
@@ -224,7 +231,7 @@ html {
     position: absolute;
     z-index: 10;
     font-size: 0.7rem;
-    right: 2px;
+    right: 33px;
     top: -3px;
     padding: 5px;
     border-radius: 50%;
@@ -238,13 +245,16 @@ html {
 .header-icons .icon {
   width: 24px;
   height: 24px;
+  margin: 6px 0 0 0;
 }
 .header-icons .icon-text {
-  display: block;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.9px;
-  line-height: 16px;
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.9px;
+    line-height: 4px;
+    padding: 0;
+    margin: 0;
 }
 .list-item:hover {
   border-bottom: 3.5px solid #ee5f73;
@@ -319,6 +329,13 @@ html {
 @media (max-width: 820px) {
   .list {
     display: none;
+  }
+  
+  .header-title {
+    margin: 0 0 0 50px;
+  }
+  .header-title .img {
+      text-align: end;
   }
 }
 </style>

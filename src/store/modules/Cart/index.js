@@ -10,6 +10,7 @@ export default {
     return{
       createCart:[],
       retriveCartData:{},
+      addToCart:[],
       // items: [],
       qty: 0,
       // productCount:0,
