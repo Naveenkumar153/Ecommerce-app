@@ -17,8 +17,8 @@
     ]
   },
   /*
-  this line of code solveing below lines of error
-  TypeScript intellisense is disabled on template, you can config `"jsx": "preserve"` in tsconfig or jsconfig to enable it, or config `vueCompilerOptions.experimentalDisableTemplateSupport` to disable this prompt.
+    this line of code solveing below lines of error
+    TypeScript intellisense is disabled on template, you can config `"jsx": "preserve"` in tsconfig or jsconfig to enable it, or config `vueCompilerOptions.experimentalDisableTemplateSupport` to disable this prompt.
   */ 
   "vueCompilerOptions": {
     "experimentalDisableTemplateSupport": true,
