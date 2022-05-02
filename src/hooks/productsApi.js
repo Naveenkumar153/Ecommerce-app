@@ -2,21 +2,25 @@
 import { ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from 'vue-router';
-import { BaseAlert } from '@/Classes/Base/BaseAlert';
+import { BaseAlert } from '@/Classes/BaseAlert';
+
 function useProductApi(refresh = false) {
   const store = useStore();
   const router = useRouter();
   let productData = ref([]);
   const fetchProducts = async () => {
     router.replace('/')
-    const loading = new BaseAlert("Please Wait...","bubbles");
-    await loading.loaderEnabled()
-    const product = await store.dispatch("product/fetchProduct", {
+    await BaseAlert.loaderEnabled("Please Wait...","bubbles");
+    await store.dispatch("product/fetchProduct", {
       foreceUpdate: refresh,
     });
-    store.dispatch('cart/createCart');
+    try{
+      await store.dispatch('cart/createCart');
+    }catch(err){
+      BaseAlert.toastMessageEnabled(err,4000);
+    }
     productData.value = store.getters.fetchProducts;
-    loading.loaderDisabled();
+    BaseAlert.loaderDisabled();
   };
   return {
     fetchProducts,

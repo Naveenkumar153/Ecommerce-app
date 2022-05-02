@@ -2,7 +2,7 @@
 import { reactive } from 'vue';
 import { useStore } from "vuex";
 import { useRouter } from 'vue-router';
-import { BaseAlert } from '@/Classes/Base/BaseAlert';
+import { BaseAlert } from '@/Classes/BaseAlert';
 
 function useCart(product){
         const store  = useStore();
@@ -14,8 +14,7 @@ function useCart(product){
             cartName.show  = !cartName.show
             let cartQuandity = 0;
             if(!cartName.show){
-                const loaderEnabled = new BaseAlert("Added...","dots")
-                await loaderEnabled.loaderEnabled("Added...","dots")
+                await BaseAlert.loaderEnabled("Added...","dots")
                 store.dispatch('cart/addToCart',{ 
                     cartValue:{
                         cartId:getCart.id,
@@ -23,12 +22,11 @@ function useCart(product){
                         quantity: ++cartQuandity
                     } 
                 })
-                 loaderEnabled.loaderDisabled();
+                BaseAlert.loaderDisabled();
             }else{
-                const loaderDismiss = new BaseAlert("go to cart...","dots")
-                await loaderDismiss.loaderEnabled()
+                await BaseAlert.loaderEnabled("go to cart...","dots")
                 await store.dispatch('cart/retriveCart');
-                 loaderDismiss.loaderDisabled();
+                BaseAlert.loaderDisabled();
                 await router.push('/cart');
             }
         };

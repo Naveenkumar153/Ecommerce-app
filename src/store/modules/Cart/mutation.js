@@ -4,7 +4,6 @@ export default {
         state.createCart = cart;
     },
     retriveCart(state,cartData){
-        // console.log(cartData)
         state.retriveCartData = cartData
     },
     updateCartItem(state,updateData){
@@ -15,6 +14,6 @@ export default {
     },
     deleteItemToCart(state,deleteData){
         state.retriveCartData = deleteData;
-        state.qty--;
+        state.qty = deleteData.cart.total_unique_items;
     }
 };

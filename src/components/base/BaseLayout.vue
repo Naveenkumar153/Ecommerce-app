@@ -151,7 +151,7 @@ export default {
     const store        = useStore();
     const router       = useRouter();
     const route        = useRoute();
-    // let   productCount = ref('');
+    
     const currentRouteName = computed(() => route.name === "home");
     const { menuItems, productRouting } = filterDataNavigation();
     // product qty 

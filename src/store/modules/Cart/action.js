@@ -2,61 +2,82 @@
 import axios from "@/Services/AxiosInterceptor";
 export default {
    async createCart({commit}){
+       let response;
         try {
-            const api             = 'carts';
-            const {data:cartData} = await axios.get(api);
-            commit('createTheCart',cartData)
-            console.log(cartData);
-        } catch (error) {
-            console.error(error)
+            const api      = 'carts';
+                  response = await axios.get(api);
+        } catch (err) {
+            const error = new Error(err || 'Failed to fetch')
+            throw error
+        }
+        if(response.status >= 200 && response.status <= 299){
+            commit('createTheCart',response.data)
         }
     },
    async addToCart(context,payload){ 
+       let response;
         try{
-            const api               = `carts/${payload.cartValue.cartId}`;
-            const {data:addProduct} = await axios.post(api,
+            const api      = `carts/${payload.cartValue.cartId}`;
+                  response = await axios.post(api,
                 {"id":`${payload.cartValue.proId}`,"quantity":`${payload.cartValue.quantity}`},
                 {headers:{'Content-Type': 'application/json'}});
-                context.commit('addToCart',addProduct)
-        }catch(error){
-            console.error(error + ' Add Cart Error') 
+                
+        }catch(err){
+            const error = new Error(err || 'Failed to fetch')
+            throw error 
+        }
+
+        if(response.status >= 200 && response.status <= 299){
+            context.commit('addToCart',response.data)
         }
     },
     async retriveCart({commit,getters}){
+        let response;
         try {
             const cartId = getters.createCart;
             const api    = `carts/${cartId.id}`;
-            const {data:getCartData} = await axios.get(api);
-            commit('retriveCart',getCartData);
-            console.log(getCartData)
-        } catch (error) {
-            console.error(error + 'Retrive Cart Error');
+            response     = await axios.get(api);
+            console.log(response)
+        } catch (err) {
+            const error = new Error(err || 'Failed to fetch')
+            throw error
+        }
+
+        if(response.status >= 200 && response.status <= 299){
+            commit('retriveCart',response.data);
         }
     },
     async updateCartItem(context,payload){
+        let response;
         try {
             let data = payload
-            console.log(data);
             const api = `carts/${data.cartValue.cartId}/items/${data.cartValue.productId}`;
-            const {data:updateData} = await axios.put(api,{"quantity":`${data.cartValue.quantity}`},
+            response  = await axios.put(api,{"quantity":`${data.cartValue.quantity}`},
             {headers:{'Content-Type': 'application/json'}}
             )
-            context.commit('updateCartItem',updateData)
-            console.log(updateData)
-        } catch (error) {
-            console.error(error + ' update cart item error')
+        } catch (err) {
+            const error = new Error(err || 'Failed to fetch')
+            throw error
         }
+        if(response.status >= 200 && response.status <= 299){
+            context.commit('updateCartItem',response.data)
+        }
+
     },
-    async deleteItemToCart(context,payload){
+    async deleteItemToCart({commit},payload){
+        let response;
         try {
             let data = payload
             console.log(data);
             const api = `carts/${data.cartValue.cartId}/items/${data.cartValue.productId}`;
-            const { data:deleteData } = await axios.delete(api);
-            console.log(deleteData);
-            context.commit('deleteItemToCart',deleteData)
-        } catch (error) {
-            console.error(error + ' Delete cart item error')
+            response = await axios.delete(api);
+        } catch (err) {
+            const error = new Error(err || 'Failed to fetch')
+            throw error
         }
+        if(response.status >= 200 && response.status <= 299){
+            commit('deleteItemToCart',response.data);
+        }
+        
     }
 };

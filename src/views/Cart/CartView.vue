@@ -98,7 +98,7 @@ import { useStore } from "vuex";
 import { useRouter } from 'vue-router';
 import { addOutline,removeSharp,trashSharp } from "ionicons/icons";
 import  useCartItemCURD from '../../hooks/cart/cartItemsCURD';
-import { BaseAlert } from '@/Classes/Base/BaseAlert';
+import { BaseAlert } from '@/Classes/BaseAlert';
 export default {
   components:{
     IonGrid,
@@ -173,8 +173,7 @@ export default {
     let  addItemToCart  =  async (id) => {
        if(retreiveData.value.cart){
          let { product } = useCartItemCURD(retreiveData,id);
-          const loading = new BaseAlert("Added...","dots");
-          await loading.loaderEnabled();
+           await BaseAlert.loaderEnabled("Added...","dots");
            await store.dispatch('cart/updateCartItem',{
             cartValue:{
               cartId   : retreiveData.value.cart.id,
@@ -182,11 +181,10 @@ export default {
               quantity : ++product.quantity
             }
           })
-          loading.loaderDisabled();
+          BaseAlert.loaderDisabled();
         }else if(retreiveData.value.line_items){
             let { product } = useCartItemCURD(retreiveData,id);
-            const loading = new BaseAlert("Added...","dots");
-            await loading.loaderEnabled();
+            await BaseAlert.loaderEnabled("Added...","dots");
             await store.dispatch('cart/updateCartItem',{
               cartValue:{
                 cartId   : retreiveData.value.id,
@@ -194,7 +192,7 @@ export default {
                 quantity : ++product.quantity
               }
             })
-            loading.loaderDisabled();
+            BaseAlert.loaderDisabled();
         }else {
           console.log('failed');
         }
@@ -202,8 +200,7 @@ export default {
     let removeItemToCart = async (id) => {
         if(retreiveData.value.cart){
           let { product } = useCartItemCURD(retreiveData,id);
-          const loading = new BaseAlert("Removed...","dots");
-          await loading.loaderEnabled();;
+          await BaseAlert.loaderEnabled("Removed...","dots");
            await store.dispatch('cart/updateCartItem',{
             cartValue:{
               cartId   : retreiveData.value.cart.id,
@@ -211,12 +208,11 @@ export default {
               quantity : --product.quantity
             }
           })
-          loading.loaderDisabled();
+          BaseAlert.loaderDisabled();
         }else if(retreiveData.value.line_items){
             console.log(retreiveData.line_items)
             let { product } = useCartItemCURD(retreiveData,id);
-            const loading = new BaseAlert("Removed...","dots");
-            await loading.loaderEnabled();;
+             await BaseAlert.loaderEnabled("Removed...","dots");
              await store.dispatch('cart/updateCartItem',{
               cartValue:{
                 cartId   : retreiveData.value.id,
@@ -224,7 +220,7 @@ export default {
                 quantity : --product.quantity
               }
             })
-            loading.loaderDisabled();
+            BaseAlert.loaderDisabled();
         }else {
           console.log('failed');
         }
@@ -233,27 +229,28 @@ export default {
          if(retreiveData.value.cart){
           let { product } = useCartItemCURD(retreiveData,id);
           console.log(product)
-          const loading = new BaseAlert("Deleted...","dots");
-          await loading.loaderEnabled();
-          let data = await store.dispatch('cart/deleteItemToCart',{
+          await BaseAlert.loaderEnabled("Deleted...","dots");
+          await store.dispatch('cart/deleteItemToCart',{
             cartValue:{
               cartId   : retreiveData.value.cart.id,
               productId: product.id,
             }
           })
-          loading.loaderDisabled();
+          BaseAlert.loaderDisabled();
+          console.log(retreiveData)
         }else if(retreiveData.value.line_items){
+            console.log(retreiveData)
             console.log(retreiveData.value.line_items)
             let { product } = useCartItemCURD(retreiveData,id);
-            const loading = new BaseAlert("Deleted...","dots");
-            await loading.loaderEnabled();
-            let data = await store.dispatch('cart/deleteItemToCart',{
+            await BaseAlert.loaderEnabled("Deleted...","dots");
+            await store.dispatch('cart/deleteItemToCart',{
                 cartValue:{
                   cartId   : retreiveData.value.id,
                   productId: product.id,
                 }
              })
-            loading.loaderDisabled();
+            BaseAlert.loaderDisabled();
+            console.log(retreiveData)
         }else {
           console.log('failed');
         }
