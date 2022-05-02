@@ -19,7 +19,6 @@ function useCartItemCURD(retreiveData,id){
                     return proId
                 }
             })
-            // console.log(product);
             return product
         }
     }

@@ -1,25 +1,22 @@
 /* eslint-disable */
 import { ref } from "vue";
 import { useStore } from "vuex";
-import { loadingController } from "@ionic/vue";
-
+import { useRouter } from 'vue-router';
+import { BaseAlert } from '@/Classes/Base/BaseAlert';
 function useProductApi(refresh = false) {
   const store = useStore();
+  const router = useRouter();
   let productData = ref([]);
   const fetchProducts = async () => {
-    const loading = await loadingController.create({
-      message: "Please Wait...",
-      spinner: "bubbles",
-    });
-    await loading.present();
+    router.replace('/')
+    const loading = new BaseAlert("Please Wait...","bubbles");
+    await loading.loaderEnabled()
     const product = await store.dispatch("product/fetchProduct", {
       foreceUpdate: refresh,
     });
-    let   createCart = store.dispatch('cart/createCart');
-    console.log(createCart)
+    store.dispatch('cart/createCart');
     productData.value = store.getters.fetchProducts;
-    loading.dismiss();
-    console.log(productData.value);
+    loading.loaderDisabled();
   };
   return {
     fetchProducts,

@@ -58,40 +58,40 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .mobile {
   display: none;
-}
-.swiper {
-  width: 20%;
-  height: 30%;
-}
+  .swiper {
+    width: 20%;
+    height: 30%;
+  }
 
-.swiper-slide {
-  text-align: start;
-  /* font-size: 18px; */
-  background: #fff;
+  .swiper-slide {
+    text-align: start;
+    /* font-size: 18px; */
+    background: #fff;
 
-  /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-}
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
 
-.swiper-slide img {
-  display: block;
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
+  .swiper-slide img {
+    display: block;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
 }
 
 @media (max-width: 568px) {

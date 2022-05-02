@@ -91,7 +91,7 @@ import {
 import { star, cartOutline,arrowForwardOutline } from "ionicons/icons";
 import { ref,reactive } from "vue";
 import { useStore } from "vuex";
-import useCart from '../../hooks/cart';
+import useCart from '../../hooks/cart/addCart';
 export default {
   components: {
     IonButton,
@@ -136,7 +136,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 ion-row {
   margin: 10px;
 }
@@ -145,6 +145,15 @@ ion-col {
 }
 .card{
   box-shadow:none;
+  .img {
+  width: 100%;
+  height: 250px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
 }
 ion-card-subtitle {
   font-size: 1.3rem;
@@ -155,79 +164,63 @@ ion-card-subtitle {
   align-items: center;
   justify-content: space-evenly;
   margin: 1rem 0;
-}
-.price-card h4 {
-  font-size: 2rem;
-  color: var(--ion-color-product-price);
-}
-.price-card p {
-  text-decoration: line-through;
-  font-size: 1rem;
-}
+  h4 {
+    font-size: 2rem;
+    color: var(--ion-color-product-price);
+  }
+  p{
+    text-decoration: line-through;
+    font-size: 1rem;
+  }
+   span{
+    color: var(--ion-color-success);
+    font-size: 1.3rem;
 
-.price-card span {
-  color: var(--ion-color-success);
+  }
 }
-
 .cart-btns {
   width: 100%;
   margin: 1rem 0 0 0;
   background: var(--ion-color-danger);
+  .cart-btn{
+    display:flex;
+    align-items:center;
+    /* justify-content: center; */
+    span{
+      margin:10px;
+    }
+    ion-icon{
+      font-size:1.1rem;
+    }
+  }
 }
 
-.cart-btns .cart-btn{
-  display:flex;
-  align-items:center;
-  /* justify-content: center; */
-}
-.cart-btns .cart-btn span{
-  margin:10px;
-}
-.cart-btns .cart-btn ion-icon{
-  font-size:1.1rem;
-}
 .product-rating {
   width: 70px;
   padding: 0 0 0 15px;
+  ion-badge {
+    font-size: 1.1rem;
+    border-radius: 50px;
+    padding: 4px 8px;
+    ion-icon {
+      font-size: 0.8rem;
+    }
+  }
 }
-
-.product-rating ion-badge {
-  font-size: 1.1rem;
-  border-radius: 50px;
-  padding: 4px 8px;
-}
-
-.product-rating ion-badge ion-icon {
-  font-size: 0.8rem;
-}
-.price-card span {
-  font-size: 1.3rem;
-}
-.img {
-  width: 100%;
-  height: 250px;
-}
-
-.img img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
 .small-img-group {
   display: flex;
   /* justify-content: space-between; */
   margin: 8px 0 0 0;
-}
-.small-img-group .small-img-col {
-  flex-basis: 24%;
-  height: 75px;
-  border:1px solid #000;
-  margin:0 5px;
-}
-.small-img-group .small-img-col img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  .small-img-col {
+    flex-basis: 24%;
+    height: 75px;
+    border:1px solid #000;
+    margin:0 5px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
 }
 </style>

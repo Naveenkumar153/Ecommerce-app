@@ -45,8 +45,8 @@ import {
   menuController,
 } from "@ionic/vue";
 import { addOutline } from "ionicons/icons";
-import useNavigation from "../../hooks/navigation";
-import filterDataNavigation from "../../hooks/filterDataEachNavigation";
+import useNavigation from "../../hooks/navbar/navigation";
+import filterDataNavigation from "../../hooks/navbar/filterDataEachNavigation";
 export default {
   components: {
     IonMenu,
@@ -90,68 +90,70 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 /* eslint-disable */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 
-html {
-  font-family: "Roboto", sans-serif;
-}
-.active-item {
+
+/* .active-item {
   color: var(--ion-color-primary);
   font-weight: 500;
+} */
+html {
+  font-family: "Roboto", sans-serif;
+  ion-icon {
+    color: var(--ion-color-secondary-contrast);
+    margin: 0 15px 0 0;
+  }
+  .menu-close {
+    position: absolute;
+    font-size: 2.7rem;
+    color: #fff;
+    right: 0px;
+    top: 3px;
+    transform: rotate(45deg);
+    cursor: pointer;
+  }
+  .menu-header-background {
+    height: 180px;
+    width: 350px;
+    background: #7590d6;
+    background: linear-gradient(90deg, #7590d6 0%, #4d71d7 100%);
+    box-shadow: 0px 1px 10px rgba(98, 140, 255, 0.5);
+  }
+  .header-content {
+    position: absolute;
+    top: 30px;
+    left: 15px;
+    display: flex;
+    align-items: center;
+    .header-content__img {
+      width: 100px;
+      height: 100px;
+      border: 5px solid #fff;
+      /* border:7px solid #5e7ccc; */
+    }
+    .header-content__username {
+      color: #fff;
+      font-size: 1.5rem;
+      margin: 0 0 0 20px;
+    }
+  }
 }
-ion-icon {
-  color: var(--ion-color-secondary-contrast);
-  margin: 0 15px 0 0;
-}
-.menu-close {
-  position: absolute;
-  font-size: 2.7rem;
-  color: #fff;
-  right: 0px;
-  top: 3px;
-  transform: rotate(45deg);
-  cursor: pointer;
-}
-.menu-header-background {
-  height: 180px;
-  width: 350px;
-  background: #7590d6;
-  background: linear-gradient(90deg, #7590d6 0%, #4d71d7 100%);
-  box-shadow: 0px 1px 10px rgba(98, 140, 255, 0.5);
-}
-.header-content {
-  position: absolute;
-  top: 30px;
-  left: 15px;
-  display: flex;
-  align-items: center;
-}
-.header-content .header-content__img {
-  width: 100px;
-  height: 100px;
-  border: 5px solid #fff;
-  /* border:7px solid #5e7ccc; */
-}
-.header-content .header-content__username {
-  color: #fff;
-  font-size: 1.5rem;
-  margin: 0 0 0 20px;
-}
-
-.menu-item {
-  margin: 0 15px;
-  cursor: pointer;
-  font-weight: 700;
-  letter-spacing: 0.7px;
-  color: #282c3f;
-}
-.menu-item:hover {
-  border-left: 4px solid #5e7ccc;
-}
-ion-item {
-  --border-color: #a5a5a5;
+.menu-items{
+  .menu-item {
+    margin: 0 15px;
+    cursor: pointer;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    color: #282c3f;
+  }
+  .menu-item:hover {
+    border-left: 4px solid #5e7ccc;
+  }
+  ion-item {
+    --border-color: #a5a5a5;
+  }
 }
 
 @media (min-width: 768px) {

@@ -126,7 +126,7 @@ import { computed,ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { useStore } from 'vuex';
 import { cartOutline, personOutline } from "ionicons/icons";
-import filterDataNavigation from "../../hooks/filterDataEachNavigation";
+import filterDataNavigation from "../../hooks/navbar/filterDataEachNavigation";
 export default {
   components: {
     IonHeader,
@@ -179,163 +179,170 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 /* eslint-disable */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 
 html {
   font-family: "Roboto", sans-serif;
-}
-.container{
-  display:flex;
-  justify-content: center;
-  width:100%;
-}
-/* .site-header {
-  max-width: 1328px;
-} */
-.header-title {
-  text-align: center;
-  /* margin: 0 0 0 50px; */
-}
-/* .header-title .img {
-  text-align: end;
-} */
-.header-title .img img {
-  width: 47px;
-}
-/* .site-logo .logo {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-} */
-.list {
-  display: flex;
-  width: 460px;
-}
-.list-item {
-  padding: 0 6px;
-  font-weight: 500;
-  letter-spacing: 0.7px;
-  color: #282c3f;
-  cursor: pointer;
-}
-.header-icons {
-  display: flex;
-  width: 110px;
-  height: 50px;
-  align-items: center;
-  position:relative;
-}
-.header-icons .badge{
-    position: absolute;
-    z-index: 10;
-    font-size: 0.7rem;
-    right: 33px;
-    top: -3px;
-    padding: 5px;
-    border-radius: 50%;
-}
-.header-icons .header-icon {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  cursor:pointer;
-}
-.header-icons .icon {
-  width: 24px;
-  height: 24px;
-  margin: 6px 0 0 0;
-}
-.header-icons .icon-text {
-    display: block;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.9px;
-    line-height: 4px;
-    padding: 0;
-    margin: 0;
-}
-.list-item:hover {
-  border-bottom: 3.5px solid #ee5f73;
-  color: #ee5f73;
-  margin-bottom: -8px;
-}
-.logo {
-  cursor: pointer;
-}
-
-.footer{
-  background:var(--ion-footer-color);
-}
-.footer .download-app h3{
-    font-size: 1.5rem;
-    letter-spacing: var(--ion-letter-spacing);
-}
-.footer .download-app h4{
-    font-size: 1.2rem;
-    letter-spacing: var(--ion-letter-spacing);
-}
-.footer .download-app p{
-    margin: 10px 0;
-    font-size: .9rem;
-     letter-spacing: var(--ion-letter-spacing);
-}
-.footer .download-app .images{
+  .header-title {
+    text-align: center;
+    .img {
+      img{
+        width: 47px;
+      }
+    }
+  }
+  .list {
     display: flex;
-    flex-direction: column;
-}
-.footer .download-app .images img{
-    margin: 10px 0;
-    object-fit: cover;
-    width: 120px;
-}
-.footer .footer-logo {
-  display: flex;
-  justify-content:center;
-}
-.footer .footer-logo img{
-  width:120px
-}
-.footer .footer-quote p{
-  text-align:center;
-  font-size:.9rem;
-  margin:20px 0 0 0;
-  letter-spacing: var(--ion-letter-spacing);
-}
-.footer .footer-links h3,
-.footer .social-media h3{
-  font-size:1.2rem;
-}
-.footer .footer-links ul,
-.footer .social-media ul{
-    list-style: none;
-    padding: 0;
+    width: 460px;
+    .list-item {
+      padding: 0 6px;
+      font-weight: 500;
+      letter-spacing: 0.7px;
+      color: #282c3f;
+      cursor: pointer;
+    }
+    .list-item:hover {
+      border-bottom: 3.5px solid #ee5f73;
+      color: #ee5f73;
+      margin-bottom: -8px;
+    }
+  }
+  .header-icons {
+    display: flex;
+    width: 110px;
+    height: 50px;
+    align-items: center;
+    position:relative;
+    .badge{
+        position: absolute;
+        z-index: 10;
+        font-size: 0.7rem;
+        right: 33px;
+        top: -3px;
+        padding: 5px;
+        border-radius: 50%;
+    }
+    .header-icon {
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      cursor:pointer;
+      .icon {
+        width: 24px;
+        height: 24px;
+        margin: 6px 0 0 0;
+      }
+      .icon-text {
+          display: block;
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 0.9px;
+          line-height: 4px;
+          padding: 0;
+          margin: 0;
+      }
+    }
+  }
+  .logo {
+    cursor: pointer;
+  }
+
+  .footer{
+    background:var(--ion-footer-color);
+    .container{
+      display:flex;
+      justify-content: center;
+      width:100%;
+      .download-app{
+          h3{
+            font-size: 1.5rem;
+            letter-spacing: var(--ion-letter-spacing);
+          }
+          h4{
+              font-size: 1.2rem;
+              letter-spacing: var(--ion-letter-spacing);
+          }
+          p{
+              margin: 10px 0;
+              font-size: .9rem;
+              letter-spacing: var(--ion-letter-spacing);
+          }
+          .images{
+              display: flex;
+              flex-direction: column;
+            img{
+                margin: 10px 0;
+                object-fit: cover;
+                width: 120px;
+            }
+          }
+      } 
+      .footer-logo{
+        display: flex;
+        justify-content:center;
+        img{
+          width:120px
+        }
+      }
+      .footer-quote{
+        p{
+          text-align:center;
+          font-size:.9rem;
+          margin:20px 0 0 0;
+          letter-spacing: var(--ion-letter-spacing);
+        }
+      }
+      .footer-links {
+        h3{
+          font-size:1.2rem;
+        }
+        ul{
+          list-style: none;
+          padding: 0;
+          li{
+            font-size: 1rem;
+            padding: 10px 0;
+          }
+        }
+      }
+      .social-media{
+      h3{
+          font-size:1.2rem;
+        }
+        ul{
+          list-style: none;
+          padding: 0;
+          li{
+            font-size: 1rem;
+            padding: 10px 0;
+          }
+        }
+      }
+    }
+  }
+  .ion-fiexed{
+    min-height:calc(100% - 98px);
+  }
 }
 
-.footer .footer-links ul li,
-.footer .social-media ul li{
-    font-size: 1rem;
-    padding: 10px 0;
-}
-.ion-fiexed{
-  min-height:calc(100% - 98px);
-}
 @media (min-width: 820px) {
   .menuBtn {
     display: none;
   }
 }
 @media (max-width: 820px) {
-  .list {
-    display: none;
-  }
-  
-  .header-title {
-    margin: 0 0 0 50px;
-  }
-  .header-title .img {
-      text-align: end;
+  .site-header{
+    .list {
+      display: none;
+    }
+    .header-title {
+      margin: 0 0 0 50px;
+      .img {
+          text-align: end;
+      }
+    }
   }
 }
 </style>

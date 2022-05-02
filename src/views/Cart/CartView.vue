@@ -97,7 +97,8 @@ import { reactive,computed,watch } from 'vue';
 import { useStore } from "vuex";
 import { useRouter } from 'vue-router';
 import { addOutline,removeSharp,trashSharp } from "ionicons/icons";
-import  useCartItemCURD from '../../hooks/cartItemsCURD';
+import  useCartItemCURD from '../../hooks/cart/cartItemsCURD';
+import { BaseAlert } from '@/Classes/Base/BaseAlert';
 export default {
   components:{
     IonGrid,
@@ -172,12 +173,8 @@ export default {
     let  addItemToCart  =  async (id) => {
        if(retreiveData.value.cart){
          let { product } = useCartItemCURD(retreiveData,id);
-          console.log(product)
-          const loading = await loadingController.create({
-                  message:"Added...",
-                  spinner:"dots"
-              })
-          await loading.present();
+          const loading = new BaseAlert("Added...","dots");
+          await loading.loaderEnabled();
            await store.dispatch('cart/updateCartItem',{
             cartValue:{
               cartId   : retreiveData.value.cart.id,
@@ -185,24 +182,19 @@ export default {
               quantity : ++product.quantity
             }
           })
-          loading.dismiss();
+          loading.loaderDisabled();
         }else if(retreiveData.value.line_items){
-            console.log(retreiveData.line_items)
             let { product } = useCartItemCURD(retreiveData,id);
-            console.log(product)
-            const loading = await loadingController.create({
-                    message:"Added...",
-                    spinner:"dots"
-                })
-            await loading.present();
-             await store.dispatch('cart/updateCartItem',{
+            const loading = new BaseAlert("Added...","dots");
+            await loading.loaderEnabled();
+            await store.dispatch('cart/updateCartItem',{
               cartValue:{
                 cartId   : retreiveData.value.id,
                 productId: product.id,
                 quantity : ++product.quantity
               }
             })
-            loading.dismiss();
+            loading.loaderDisabled();
         }else {
           console.log('failed');
         }
@@ -210,11 +202,8 @@ export default {
     let removeItemToCart = async (id) => {
         if(retreiveData.value.cart){
           let { product } = useCartItemCURD(retreiveData,id);
-          const loading = await loadingController.create({
-                  message:"Removed...",
-                  spinner:"dots"
-              })
-          await loading.present();
+          const loading = new BaseAlert("Removed...","dots");
+          await loading.loaderEnabled();;
            await store.dispatch('cart/updateCartItem',{
             cartValue:{
               cartId   : retreiveData.value.cart.id,
@@ -222,15 +211,12 @@ export default {
               quantity : --product.quantity
             }
           })
-          loading.dismiss();
+          loading.loaderDisabled();
         }else if(retreiveData.value.line_items){
             console.log(retreiveData.line_items)
             let { product } = useCartItemCURD(retreiveData,id);
-            const loading = await loadingController.create({
-                    message:"Removed...",
-                    spinner:"dots"
-                })
-            await loading.present();
+            const loading = new BaseAlert("Removed...","dots");
+            await loading.loaderEnabled();;
              await store.dispatch('cart/updateCartItem',{
               cartValue:{
                 cartId   : retreiveData.value.id,
@@ -238,7 +224,7 @@ export default {
                 quantity : --product.quantity
               }
             })
-            loading.dismiss();
+            loading.loaderDisabled();
         }else {
           console.log('failed');
         }
@@ -247,36 +233,27 @@ export default {
          if(retreiveData.value.cart){
           let { product } = useCartItemCURD(retreiveData,id);
           console.log(product)
-          const loading = await loadingController.create({
-                  message:"Deleted...",
-                  spinner:"dots"
-              })
-          await loading.present();
+          const loading = new BaseAlert("Deleted...","dots");
+          await loading.loaderEnabled();
           let data = await store.dispatch('cart/deleteItemToCart',{
             cartValue:{
               cartId   : retreiveData.value.cart.id,
               productId: product.id,
             }
           })
-          console.log(data)
-          loading.dismiss();
+          loading.loaderDisabled();
         }else if(retreiveData.value.line_items){
             console.log(retreiveData.value.line_items)
             let { product } = useCartItemCURD(retreiveData,id);
-            const loading = await loadingController.create({
-                    message:"Deleted...",
-                    spinner:"dots"
-                })
-            await loading.present();
+            const loading = new BaseAlert("Deleted...","dots");
+            await loading.loaderEnabled();
             let data = await store.dispatch('cart/deleteItemToCart',{
                 cartValue:{
                   cartId   : retreiveData.value.id,
                   productId: product.id,
                 }
              })
-             console.log(data)
-            loading.dismiss();
-            // router.replace('/')
+            loading.loaderDisabled();
         }else {
           console.log('failed');
         }
@@ -303,15 +280,11 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 /* eslint-disable */
 /* .product-cart-items{
   border-bottom:1px solid #000;
 } */
- .ripple-parent {
-    position: relative;
-    overflow: hidden;
-  }
 .product-cart-header{
   background: var(--ion-color-danger);
   margin:2rem 0 0 0;
@@ -319,9 +292,9 @@ export default {
 
 .product-details{
   margin:0 0 0 15px;
-}
-.product-details .product-name{
-  font-size:.9rem;
+  .product-name{
+    font-size:.9rem;
+  }
 }
 .col-start{
   text-align: start;
@@ -344,11 +317,11 @@ export default {
 
 .emp-cart{
   text-align:center;
+  .emp-cart-btn{
+    margin:20px 0;
+  }
 }
 
-.emp-cart .emp-cart-btn{
-  margin:20px 0;
-}
 
 @media (min-width:576px) {
     .img{

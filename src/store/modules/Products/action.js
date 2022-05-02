@@ -18,6 +18,7 @@ export default {
               ...category,
               productsData: allProductsData.data.filter((product) => {
                 let proudcts = product.categories.find((cat) => {
+                  // return cat.id;
                   return cat.id === category.id;
                 });
                 return proudcts;

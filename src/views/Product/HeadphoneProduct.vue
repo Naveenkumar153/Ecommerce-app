@@ -141,7 +141,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
 /* eslint-disable */
 .product-filter {
   display: flex;
@@ -151,52 +151,55 @@ export default {
 ion-list {
   width: 185px;
 }
-.product-card {
-  transition: 0.6s;
-}
-.product-card:hover {
-  cursor: pointer;
-  transform: scale(1.05);
-  z-index: 10;
-  box-shadow: 0 0 20px 3px rgb(0, 0, 0, 0.1);
-}
 img {
   height: 200px;
   width: 100%;
   -o-object-fit: contain;
   object-fit: contain;
 }
-/* .productCol {
-  margin: 10px;
-} */
-.price-card {
-  padding: 10px;
-}
-.price-card h4 {
-  color: rgb(51, 51, 51);
-  font-size: 1.4rem;
-  letter-spacing: var(--ion-letter-spacing);
-}
-.price-card p {
-  font-size: 0.9rem;
-  text-decoration: line-through;
-  letter-spacing: var(--ion-letter-spacing);
-}
-.price-card span {
-  font-size: 0.8rem;
-  color: var(--ion-color-success);
-  letter-spacing: var(--ion-letter-spacing);
-}
-.product-card-subtitle {
-  height:50px;
-  padding: 10px;
-  font-size: .9rem;
-  letter-spacing: var(--ion-letter-spacing);
-  color: rgb(51, 51, 51);
-}
-.product-rating .rate {
-  font-size: 0.9rem;
-  padding: 4px;
+.product-card {
+  transition: 0.6s;
+  .product-card:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    z-index: 10;
+    box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.1);
+  }
+  .product-card-header{
+    .product-card-subtitle {
+      height:50px;
+      padding: 10px;
+      font-size: .9rem;
+      letter-spacing: var(--ion-letter-spacing);
+      color: rgb(51, 51, 51);
+    }
+  }
+  .product-card-body{
+    .price-card {
+      padding: 10px;
+      h4 {
+        color: rgb(51, 51, 51);
+        font-size: 1.4rem;
+        letter-spacing: var(--ion-letter-spacing);
+      }
+      p {
+        font-size: 0.9rem;
+        text-decoration: line-through;
+        letter-spacing: var(--ion-letter-spacing);
+      }
+      span {
+        font-size: 0.8rem;
+        color: var(--ion-color-success);
+        letter-spacing: var(--ion-letter-spacing);
+      }
+    }
+    .product-rating{
+      .rate {
+        font-size: 0.9rem;
+        padding: 4px;
+      }
+    } 
+  }
 }
 
 @media (max-width: 576px) {
