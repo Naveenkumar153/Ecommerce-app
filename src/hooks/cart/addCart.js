@@ -14,7 +14,7 @@ function useCart(product){
             cartName.show  = !cartName.show
             let cartQuandity = 0;
             if(!cartName.show){
-                await BaseAlert.loaderEnabled("Added...","dots")
+                // await BaseAlert.loaderEnabled("Added...","dots")
                 store.dispatch('cart/addToCart',{ 
                     cartValue:{
                         cartId:getCart.id,
@@ -22,11 +22,11 @@ function useCart(product){
                         quantity: ++cartQuandity
                     } 
                 })
-                BaseAlert.loaderDisabled();
+                // BaseAlert.loaderDisabled();
             }else{
-                await BaseAlert.loaderEnabled("go to cart...","dots")
+                // await BaseAlert.loaderEnabled("go to cart...","dots")
                 await store.dispatch('cart/retriveCart');
-                BaseAlert.loaderDisabled();
+                // BaseAlert.loaderDisabled();
                 await router.push('/cart');
             }
         };

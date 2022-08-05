@@ -10,7 +10,7 @@ export default {
       const categorieApi = "categories";
       const { data: allProductsData } = await axios.get(productApi);
       const { data: allCategoriesData } = await axios.get(categorieApi);
-      const productPerCategories = allCategoriesData.data.reduce(
+      const productPerCategories =  allCategoriesData.data.reduce(
         (acc, category) => {
           return [
             ...acc,
@@ -30,7 +30,7 @@ export default {
       );
       context.commit("fetchProduct", await productPerCategories);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   },
   getFilterProduct(context, product) {
