@@ -79,5 +79,25 @@ export default {
             commit('deleteItemToCart',response.data);
         }
         
+    },
+    // checkout
+    async checkout({commit},payload){
+        let response;
+        console.log(payload)
+        try{
+            let data = payload.cartId.id;
+            let api  = `checkouts/${data}`;
+            response = await axios.get(api);;
+            console.log(response)
+        }catch(err){
+            const error = new Error(err || 'Failed to checkout');
+            throw error
+        }
+
+        if(response.status === 200 || response.status === 201){
+            commit('deleteItemToCart',response.data);
+        }
     }
 };
+
+   

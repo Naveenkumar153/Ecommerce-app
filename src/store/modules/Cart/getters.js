@@ -15,5 +15,8 @@ export default {
     },
     addToCart(state){
         return state.qty;
+    },
+    checkoutData(state){
+        return state.checkoutData;
     }
 };

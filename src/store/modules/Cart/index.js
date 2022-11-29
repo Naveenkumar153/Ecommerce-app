@@ -11,6 +11,7 @@ export default {
       createCart:[],
       retriveCartData:{},
       addToCart:[],
+      checkout:[],
       // items: [],
       qty: 0,
       // productCount:0,
