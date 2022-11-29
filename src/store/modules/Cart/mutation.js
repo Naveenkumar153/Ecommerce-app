@@ -15,5 +15,8 @@ export default {
     deleteItemToCart(state,deleteData){
         state.retriveCartData = deleteData;
         state.qty = deleteData.cart.total_unique_items;
+    },
+    checkout(state,checkoutData){
+        state.checkout = checkoutData;
     }
 };

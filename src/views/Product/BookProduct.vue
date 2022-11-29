@@ -1,6 +1,7 @@
 <template>
   <!-- eslint-disable -->
-  <base-layout pageDefaultBackLink="/">
+  <!-- pageDefaultBackLink="/" -->
+  <base-layout >
       <div class="container">
         <ion-grid>
             <ion-row class=" ion-justify-content-center filter">
@@ -143,6 +144,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 /* eslint-disable */
+
 .product-filter {
   display: flex;
   align-items: center;

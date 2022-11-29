@@ -143,6 +143,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 /* eslint-disable */
+// @use './BookProduct.vue';
+
 .product-filter {
   display: flex;
   align-items: center;

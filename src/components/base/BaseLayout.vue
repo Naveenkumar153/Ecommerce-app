@@ -3,14 +3,15 @@
   <ion-page>
     <ion-header class="mobile-header site-header">
       <ion-toolbar>
-        <ion-buttons slot="start" class="menuBtn" v-if="currentRouteName">
+        <!-- v-if="currentRouteName" -->
+        <ion-buttons slot="start" class="menuBtn" >
           <ion-menu-button menu="myMenu"></ion-menu-button>
         </ion-buttons>
-        <ion-buttons slot="start" v-else>
+        <!-- <ion-buttons slot="start" v-else>
           <ion-back-button
             :default-href="pageDefaultBackLink"
           ></ion-back-button>
-        </ion-buttons>
+        </ion-buttons> -->
         <ion-title slot="start" class="header-title">
           <div class="img">
             <img
