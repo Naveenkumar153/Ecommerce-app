@@ -5,36 +5,38 @@
           <ion-row>
            <div class="container">
             <ion-col size="12">
-              <swiper
-                :spaceBetween="30"
-                :centeredSlides="true"
-                :autoplay="{
-                  delay: 2500,
-                  disableOnInteraction: false,
-                }"
-                :pagination="{
-                  clickable: true,
-                }"
-                :navigation="true"
-                :modules="modules"
-                class="mySwiper"
-              >
-                <swiper-slide
-                  ><img src="../../assets/img/home/1.jpg" alt=""
-                /></swiper-slide>
-                <swiper-slide
-                  ><img src="../../assets/img/home/2.jpg" alt=""
-                /></swiper-slide>
-                <swiper-slide
-                  ><img src="../../assets/img/home/3.jpg" alt=""
-                /></swiper-slide>
-                <swiper-slide
-                  ><img src="../../assets/img/home/4.jpg" alt=""
-                /></swiper-slide>
-                <swiper-slide
-                  ><img src="../../assets/img/home/5.jpg" alt=""
-                /></swiper-slide>
-              </swiper>
+              <!-- <div class="slider"> -->
+                <swiper
+                  :spaceBetween="30"
+                  :centeredSlides="true"
+                  :autoplay="{
+                    delay: 2500,
+                    disableOnInteraction: false,
+                  }"
+                  :pagination="{
+                    clickable: true,
+                  }"
+                  :navigation="true"
+                  :modules="modules"
+                  class="mySwiper"
+                >
+                  <swiper-slide
+                    ><img src="../../assets/img/home/1.jpg" alt=""
+                  /></swiper-slide>
+                  <swiper-slide
+                    ><img src="../../assets/img/home/2.jpg" alt=""
+                  /></swiper-slide>
+                  <swiper-slide
+                    ><img src="../../assets/img/home/3.jpg" alt=""
+                  /></swiper-slide>
+                  <swiper-slide
+                    ><img src="../../assets/img/home/4.jpg" alt=""
+                  /></swiper-slide>
+                  <swiper-slide
+                    ><img src="../../assets/img/home/5.jpg" alt=""
+                  /></swiper-slide>
+                </swiper>
+              <!-- </div> -->
             </ion-col>
             </div>
           </ion-row>
@@ -68,6 +70,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+ion-grid{
+  padding: 0;
+  max-width:100% !important;
+  // max-width:fit-content;
+  ion-col{
+    padding: 0;
+  }
+}
 
 html{
   position: relative;

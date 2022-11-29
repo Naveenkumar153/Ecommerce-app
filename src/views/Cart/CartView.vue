@@ -93,7 +93,7 @@ import {
   IonIcon,
   loadingController,
 } from "@ionic/vue";
-import { reactive,computed,watch } from 'vue';
+import { reactive,computed,watch,onUnmounted } from 'vue';
 import { useStore } from "vuex";
 import { useRouter } from 'vue-router';
 import { addOutline,removeSharp,trashSharp } from "ionicons/icons";
@@ -119,20 +119,31 @@ export default {
     retreiveData = computed(() => {
       return store.getters['cart/retriveCart']; 
     })
+    // destory
+    onUnmounted(() => {
+      retreiveData.value = null;
+      console.log(retreiveData.value)
+    })
     // check data if here or not
     let dataHereOrNot = reactive({});
         dataHereOrNot = computed(() => {
       return function(retreiveData){
-         if(retreiveData.line_items == 0){
+        if(retreiveData.line_items == 0){
+          console.log('first')
+          console.log( retreiveData)
            return false;
          }else if(retreiveData.line_items){
+           console.log('second ' )
+           console.log( retreiveData)
            return true;
+         }else if(retreiveData.cart.total_items == 0){
+           console.log('thired')
+           console.log(retreiveData)
+           return false;
          }else if(retreiveData.cart.line_items){
+           console.log('fourth')
+           console.log(retreiveData)
            return true;
-         }else if(retreiveData.cart.line_items == 0){
-           return false;
-         }else if(!retreiveData){
-           return false;
          }
       }
     })

@@ -2,12 +2,12 @@
 import Axios from "axios";
 import { environment } from '../environment/environment';
 import { BaseAlert } from '../Classes/BaseAlert';
-import { BaseToast } from "@/Classes/BaseToast";
+import { BaseToast } from "../Classes/BaseToast";
  const apiClient =  Axios.create({ baseURL: environment.apiBaseUrl });
 
 apiClient.interceptors.request.use(
    (config) => {
-    console.log(config);
+    // console.log(config);
     BaseAlert.loaderEnabled(null,"dots")
     const token = process.env.VUE_APP_PRODUCT_API_PUBLIC_KEY;
     config.headers["X-Authorization"] = token;

@@ -2,7 +2,7 @@
 import { reactive } from 'vue';
 import { useStore } from "vuex";
 import { useRouter } from 'vue-router';
-import { BaseAlert } from '@/Classes/BaseAlert';
+// import { BaseAlert } from '@/Classes/BaseAlert';
 
 function useCart(product){
         const store  = useStore();

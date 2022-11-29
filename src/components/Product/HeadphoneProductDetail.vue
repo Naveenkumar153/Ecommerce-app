@@ -1,6 +1,7 @@
 <template>
   <!-- eslint-disable -->
-  <base-layout pageDefaultBackLink="/books">
+  <!-- pageDefaultBackLink="/books" -->
+  <base-layout >
    <div class="container">
       <ion-grid>
         <ion-row class="ion-justify-content-center">
