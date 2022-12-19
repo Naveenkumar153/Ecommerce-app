@@ -61,7 +61,7 @@
                 </div>
              </ion-col>
            </ion-row>
-           <ion-row>
+           <!-- <ion-row>
             <ion-col 
             size-xs="5" offset-xs="4"
             size-sm="3" offset-sm="5"
@@ -72,7 +72,7 @@
                 <ion-button @click="checkout(retreiveData)" class="checkout-btn__checkout-btn">Checkout</ion-button>
               </div>
             </ion-col>
-           </ion-row>
+           </ion-row> -->
         </ion-grid>
         <ion-grid v-else>
             <ion-row>
@@ -358,11 +358,11 @@ export default {
 }
 
 // checkoutbtn
-.checkout-btn{
-  .checkout-btn__btn{
+// .checkout-btn{
+//   .checkout-btn__btn{
 
-  }
-}
+//   }
+// }
 
 @media (min-width:576px) {
     .img{

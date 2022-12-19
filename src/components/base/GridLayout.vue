@@ -121,20 +121,20 @@ export default {
                     }
                 }
                 .prodimage-container{
-                    .img{
-                        img{
+                    // .img{
+                    //     img{
 
-                        }
-                    }
+                    //     }
+                    // }
                     .text{
                         span{
                             font-size: .85rem;
                         }
                     }
                 }
-                .prodlink-container{
+                // .prodlink-container{
 
-                }
+                // }
             }
         }
     }
